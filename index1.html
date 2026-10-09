@@ -758,6 +758,186 @@
             box-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
         }
     </style>
+
+    <!-- ========== 涉药违规自查页（违规词参考）专属样式 ========== -->
+    <style id="compliance-guide-style">
+        .cg {
+            --cg-card: #ffffff;
+            --cg-card-border: #eceef3;
+            --cg-text: #374151;
+            --cg-muted: #6b7280;
+            --cg-num: #a3a8b4;
+            --cg-ok-line: rgba(16,185,129,.40);
+            --cg-ok-bg: rgba(16,185,129,.06);
+            --cg-ok-strong: #159a5a;
+            --cg-ok-ic: #22c55e;
+            --cg-ban-line: rgba(239,68,68,.32);
+            --cg-ban-bg: rgba(239,68,68,.05);
+            --cg-ban-strong: #dc2626;
+            --cg-ban-ic: #ef4444;
+            --cg-warn-line: rgba(245,158,11,.45);
+            --cg-warn-bg: rgba(245,158,11,.08);
+            --cg-warn-strong: #c97a06;
+            --cg-warn-ic: #f59e0b;
+            --cg-mark: #fde68a;
+            width: 100%;
+            color: var(--cg-text);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        body.dark .cg {
+            --cg-card: #191924;
+            --cg-card-border: #2a2a38;
+            --cg-text: #d4d8e0;
+            --cg-muted: #98a0af;
+            --cg-num: #5d6273;
+            --cg-ok-line: rgba(16,185,129,.42);
+            --cg-ok-bg: rgba(16,185,129,.12);
+            --cg-ok-strong: #4ade80;
+            --cg-ok-ic: #4ade80;
+            --cg-ban-line: rgba(239,68,68,.42);
+            --cg-ban-bg: rgba(239,68,68,.12);
+            --cg-ban-strong: #f87171;
+            --cg-ban-ic: #f87171;
+            --cg-warn-line: rgba(245,158,11,.45);
+            --cg-warn-bg: rgba(245,158,11,.13);
+            --cg-warn-strong: #fbbf24;
+            --cg-warn-ic: #fbbf24;
+            --cg-mark: #854d0e;
+        }
+        .cg * { box-sizing: border-box; }
+        .cg mark { background: var(--cg-mark); color: inherit; border-radius: 3px; padding: 0 2px; }
+        body.dark .cg mark { color: #fde68a; }
+
+        /* 卡片基底 */
+        .cg-card {
+            background: var(--cg-card);
+            border: 1px solid var(--cg-card-border);
+            border-radius: 20px;
+            box-shadow: 0 6px 18px -8px rgba(17,24,39,.12);
+        }
+
+        /* 顶部 Hero */
+        .cg-hero { padding: 30px 30px 26px; position: relative; overflow: hidden; }
+        .cg-eyebrow {
+            font-size: 13px; letter-spacing: .28em; font-weight: 700;
+            color: var(--cg-ok-strong); text-transform: uppercase; margin-bottom: 14px;
+        }
+        .cg-h1 { font-size: 30px; line-height: 1.25; font-weight: 800; color: #9aa0ab; letter-spacing: .01em; }
+        .cg-h1-sub { color: var(--cg-ok-strong); }
+        body.dark .cg-h1 { color: #6b7180; }
+        .cg-intro { margin-top: 16px; color: var(--cg-muted); max-width: 880px; }
+        .cg-intro u { text-decoration: underline; text-decoration-color: var(--cg-ban-ic); text-underline-offset: 3px; }
+        .cg-legend { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 20px; }
+        .cg-legend-item { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--cg-text); }
+        .cg-legend-ic {
+            width: 22px; height: 22px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 12px; flex-shrink: 0;
+        }
+        .cg-legend-ic.ok { background: var(--cg-ok-ic); }
+        .cg-legend-ic.ban { background: var(--cg-ban-ic); }
+        .cg-legend-ic.warn { background: var(--cg-warn-ic); }
+        .cg-legend-ic.img { background: #4b5563; }
+
+        /* 分区 */
+        .cg-section { margin-top: 22px; padding: 26px 28px 28px; scroll-margin-top: 90px; }
+        .cg-sec-head { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+        .cg-sec-num { font-size: 34px; font-weight: 800; color: var(--cg-num); line-height: 1; letter-spacing: .02em; }
+        .cg-sec-title { font-size: 22px; font-weight: 800; color: var(--cg-text); line-height: 1.3; }
+        .cg-sec-sub { font-size: 13.5px; color: var(--cg-muted); margin-top: 3px; font-weight: 500; }
+
+        /* 彩色表述框 */
+        .cg-box { border: 1px solid; border-radius: 16px; padding: 18px 20px; margin-top: 16px; }
+        .cg-box:first-of-type { margin-top: 0; }
+        .cg-box.ok { border-color: var(--cg-ok-line); background: var(--cg-ok-bg); }
+        .cg-box.ban { border-color: var(--cg-ban-line); background: var(--cg-ban-bg); }
+        .cg-box.warn { border-color: var(--cg-warn-line); background: var(--cg-warn-bg); }
+        .cg-box-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+        .cg-box-title { display: inline-flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 800; }
+        .cg-box.ok .cg-box-title { color: var(--cg-ok-strong); }
+        .cg-box.ban .cg-box-title { color: var(--cg-ban-strong); }
+        .cg-box.warn .cg-box-title { color: var(--cg-warn-strong); }
+        .cg-box-ic {
+            width: 24px; height: 24px; border-radius: 7px; color: #fff; font-size: 13px;
+            display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .cg-box.ok .cg-box-ic { background: var(--cg-ok-ic); }
+        .cg-box.ban .cg-box-ic { background: var(--cg-ban-ic); }
+        .cg-box.warn .cg-box-ic { background: var(--cg-warn-ic); }
+        .cg-box-tag { font-size: 13px; font-weight: 700; flex-shrink: 0; }
+        .cg-box.ok .cg-box-tag { color: var(--cg-ok-strong); }
+        .cg-box.ban .cg-box-tag { color: var(--cg-ban-strong); }
+        .cg-box.warn .cg-box-tag { color: var(--cg-warn-strong); }
+
+        .cg-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+        .cg-li { display: flex; gap: 11px; align-items: flex-start; }
+        .cg-li-ic { flex-shrink: 0; width: 18px; height: 18px; margin-top: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
+        .cg-box.ok .cg-li-ic { color: var(--cg-ok-ic); }
+        .cg-box.ban .cg-li-ic { color: var(--cg-ban-ic); }
+        .cg-box.warn .cg-li-ic { color: var(--cg-warn-ic); }
+        .cg-li-txt { flex: 1; min-width: 0; }
+        .cg-li-en { color: var(--cg-muted); }
+        .cg-box.warn .cg-li-txt { color: var(--cg-text); }
+
+        /* 01 双卡片 */
+        .cg-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .cg-dual-card { border: 1px solid var(--cg-card-border); border-radius: 16px; padding: 20px 22px; background: var(--cg-card); }
+        .cg-dual-title { display: flex; align-items: center; gap: 9px; font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+        .cg-dual-title.cos { color: var(--cg-ok-strong); }
+        .cg-dual-title.drug { color: var(--cg-ban-strong); }
+        .cg-dual-card p { color: var(--cg-text); margin: 0 0 8px; }
+        .cg-dual-card p:last-child { margin-bottom: 0; color: var(--cg-muted); }
+        .cg-dual-foot { margin-top: 16px; color: var(--cg-text); }
+
+        /* 图片尺度框 */
+        .cg-img { border: 1px dashed var(--cg-card-border); border-radius: 16px; padding: 18px 20px; margin-top: 16px; }
+        .cg-img-title { display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 800; margin-bottom: 14px; color: var(--cg-text); }
+        .cg-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .cg-img-grid > *:only-child { grid-column: 1 / -1; }
+        .cg-img-col { border: 1px solid; border-radius: 14px; padding: 14px 16px; }
+        .cg-img-col.ok { border-color: var(--cg-ok-line); background: var(--cg-ok-bg); }
+        .cg-img-col.no { border-color: var(--cg-ban-line); background: var(--cg-ban-bg); }
+        .cg-img-col-title { font-weight: 800; font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
+        .cg-img-col.ok .cg-img-col-title { color: var(--cg-ok-strong); }
+        .cg-img-col.no .cg-img-col-title { color: var(--cg-ban-strong); }
+        .cg-img-col p { margin: 0; color: var(--cg-text); font-size: 14px; }
+        .cg-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .cg-chip {
+            font-size: 12.5px; font-weight: 600; padding: 4px 12px; border-radius: 30px;
+            border: 1px solid; display: inline-flex; align-items: center; gap: 6px; background: var(--cg-card);
+        }
+        .cg-chip.ok { color: var(--cg-ok-strong); border-color: var(--cg-ok-line); }
+        .cg-chip.no { color: var(--cg-ban-strong); border-color: var(--cg-ban-line); }
+        .cg-img-foot { margin-top: 14px; color: var(--cg-text); font-size: 14px; }
+
+        /* 国家/地区胶囊 */
+        .cg-countries-intro { color: var(--cg-text); margin-bottom: 14px; }
+        .cg-countries { display: flex; flex-wrap: wrap; gap: 9px; }
+        .cg-country {
+            font-size: 13.5px; font-weight: 600; padding: 6px 15px; border-radius: 30px;
+            color: var(--cg-ok-strong); border: 1px solid var(--cg-ok-line); background: var(--cg-ok-bg);
+        }
+
+        /* 结尾提示 */
+        .cg-final { margin-top: 22px; padding: 28px 26px; text-align: center; }
+        .cg-final-title { font-size: 18px; font-weight: 800; color: var(--cg-text); margin-bottom: 10px; }
+        .cg-final p { color: var(--cg-muted); margin: 0 auto 6px; max-width: 760px; }
+        .cg-final-sign { color: var(--cg-text); font-weight: 700; margin-top: 12px !important; }
+        .cg-src { font-size: 12.5px; color: var(--cg-num); margin-top: 14px !important; }
+
+        .cg-empty { text-align: center; padding: 48px 20px; }
+        .cg-empty i { font-size: 40px; color: var(--cg-num); margin-bottom: 14px; display: block; }
+        .cg-empty p { color: var(--cg-muted); font-size: 16px; margin: 0; }
+
+        @media (max-width: 767px) {
+            .cg-hero { padding: 24px 20px; }
+            .cg-section { padding: 22px 18px; }
+            .cg-h1 { font-size: 24px; }
+            .cg-sec-title { font-size: 19px; }
+            .cg-sec-num { font-size: 28px; }
+            .cg-dual, .cg-img-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body class="font-sans">
     <script>
@@ -1161,416 +1341,280 @@
 
 
 
-        // 详细违规词库（中英文对照）- 违规/可用双分类
-        const prohibitedWordsDetailed = [
-          // ========== 🚫 第一部分：违规词 ==========
-          {
-            category: "🚫 违规词 - FDA明确涉药描述（药品定义）",
-            items: [
-              { en: "Removes/reduces/treats fine lines, wrinkles, crow's feet, smile lines, frown lines, etc.", zh: "去除/减少/治疗细纹、皱纹、鱼尾纹、笑纹、皱眉纹等" },
-              { en: "Decreases wrinkle depth, roughness, volume, etc.", zh: "减少皱纹深度、粗糙度、体积等" },
-              { en: "Aids in the production/stimulates/increases collagen, elastin, fibroblasts, etc.", zh: "有助于产生/刺激/增加胶原蛋白、弹性蛋白、成纤维细胞等" },
-              { en: "Alternative to Botox/filler", zh: "肉毒杆菌/填充剂的替代品" },
-              { en: "Increases cell turnover, cell regeneration, healing", zh: "增加细胞更新、细胞再生、愈合" },
-              { en: "Affects/penetrates the epidermis/dermis (any layer of skin besides the stratum corneum)", zh: "影响/穿透表皮/真皮（角质层以外的任何皮肤层）" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 抗衰类（美加站点禁用）",
-            items: [
-              { en: "anti-wrinkle", zh: "抗皱（美加站点禁用）" },
-              { en: "wrinkle reduction / erase", zh: "减少/消除皱纹" },
-              { en: "wrinkle reducer", zh: "皱纹减少剂" },
-              { en: "Increase collagen", zh: "增加胶原蛋白" },
-              { en: "Increase collagen production", zh: "增加胶原蛋白生成" },
-              { en: "Increase elastin", zh: "增加弹性蛋白" },
-              { en: "Increase elastin production", zh: "增加弹性蛋白生成" },
-              { en: "cell renewal", zh: "细胞更新" },
-              { en: "cell regeneration", zh: "细胞再生" },
-              { en: "Regenerate cells", zh: "再生细胞" },
-              { en: "regenerative cells", zh: "再生细胞" },
-              { en: "restore cells", zh: "恢复细胞" },
-              { en: "Promote skin healing", zh: "促进皮肤愈合" },
-              { en: "rejuvenat / rejuvenating / rejuvenation", zh: "焕肤/返老还童" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 美白类",
-            items: [
-              { en: "Skin lightening/whitening/bleaching", zh: "皮肤美白/漂白" },
-              { en: "lightening", zh: "变白（美国站点禁用）" },
-              { en: "whitening", zh: "美白（美国站点禁用）" },
-              { en: "bleach / bleaching", zh: "漂白（全球涉药，除口腔护理）" },
-              { en: "whitening + 成分同图出现", zh: "美白+成分同图出现（素颜霜/BB霜等禁用）" },
-              { en: "烟酰胺美白", zh: "烟酰胺美白（不可描述）" },
-              { en: "Freckle removal / remove freckles", zh: "祛斑" },
-              { en: "dark spot correct", zh: "祛斑" },
-              { en: "Eliminates age spots/liver spots/senile/lentigines/freckles/melasma/chloasma", zh: "消除老年斑/雀斑/黄褐斑等" },
-              { en: "Inhibit melanin / Inhibits melanin production", zh: "抑制黑色素" },
-              { en: "reduce the production of melanin", zh: "减少黑色素的产生" },
-              { en: "reduce pigment in the skin", zh: "减少皮肤中的色素" },
-              { en: "Increase melanin / Increase pigment", zh: "增加黑色素/色素" },
-              { en: "inhibitory pigment", zh: "抑制色素" },
-              { en: "pigmentation disorders", zh: "色素沉着障碍" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 痤疮/祛痘类",
-            items: [
-              { en: "Anti-acne / anti-ance", zh: "抗痤疮" },
-              { en: "clear acne / cure acne", zh: "清除/治愈痤疮" },
-              { en: "Fight acne / Fight acne", zh: "对抗痤疮" },
-              { en: "Prevent acne / stop acne / Treat acne", zh: "预防/阻止/治疗痤疮" },
-              { en: "Clears/Prevents/Stops/Fights acne", zh: "清除/预防/阻止/对抗痤疮" },
-              { en: "祛痘 / 改善痤疮 / 治疗痤疮", zh: "祛痘/改善痤疮/治疗痤疮（涉药描述）" },
-              { en: "黑头（非遮盖/隐藏前缀）", zh: "黑头归类为痤疮疾病，除遮盖隐藏外均涉药" },
-              { en: "白头 / 痘痘", zh: "白头/痘痘（痤疮类，涉药管控）" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 美黑类（非免晒）",
-            items: [
-              { en: "Hot tanning products", zh: "热美黑产品（禁售）" },
-              { en: "tanning-accelerator cream", zh: "美黑加速霜（禁售）" },
-              { en: "Helps with Tanning", zh: "帮助美黑（禁售）" },
-              { en: "Long-lasting Darkening", zh: "持久变黑（禁售）" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 抗菌消炎类",
-            items: [
-              { en: "antibacterial / anti-bacterial", zh: "抗菌" },
-              { en: "Antibacterial / Antifungal / Anti-fungal", zh: "抗菌/抗真菌" },
-              { en: "Antiviral / Anti-viral", zh: "抗病毒" },
-              { en: "bacteriostatic", zh: "抑菌" },
-              { en: "bactericide / germicide", zh: "杀菌剂" },
-              { en: "antiseptic / disinfectant", zh: "防腐剂/消毒剂" },
-              { en: "anti-inflammatory", zh: "抗炎" },
-              { en: "inflammation", zh: "炎症" },
-              { en: "bacteria / germs / pathogens", zh: "细菌/病菌/病原体" },
-              { en: "Bacteria breakdown", zh: "细菌分解" },
-              { en: "Kill bacteria", zh: "杀死细菌" },
-              { en: "Sterilize / sterilization / sterilizer", zh: "灭菌" },
-              { en: "disinfect / Disinfectants", zh: "消毒" },
-              { en: "sanitize / sanitizer", zh: "消毒杀菌剂（涉药宣称）" },
-              { en: "Pathogen / Pathogenic", zh: "病原体/致病的" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 舒缓修护涉药类",
-            items: [
-              { en: "Calms / Calms the skin", zh: "镇静皮肤" },
-              { en: "Heal / heal skin / healing the skin", zh: "愈合/治愈皮肤" },
-              { en: "Heal repair damaged skin", zh: "愈合修复受损皮肤" },
-              { en: "repair skin / Repair skin's moisture barrier", zh: "修复皮肤/修复保湿屏障（涉药）" },
-              { en: "Sensitivity Relief / Scalp relief", zh: "缓解敏感/缓解头皮" },
-              { en: "Relief / relieve / Get Relief", zh: "缓解" },
-              { en: "relieve pain / pain relief", zh: "缓解疼痛" },
-              { en: "relieve fatigue", zh: "缓解疲劳" },
-              { en: "soothes inflammation / rashes / sunburn", zh: "舒缓炎症/皮疹/晒伤" },
-              { en: "Relieves eczema", zh: "缓解湿疹" },
-              { en: "rosacea / seborrheic dermatitis / dermatitis", zh: "红斑痤疮/脂溢性皮炎/皮炎" },
-              { en: "psoriasis / vitiligo", zh: "银屑病/白癜风" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 疤痕/妊娠纹类",
-            items: [
-              { en: "Scar / scar removal / scar-free", zh: "疤痕/祛疤" },
-              { en: "reduce scars / Remove scars", zh: "减少/去除疤痕" },
-              { en: "stretch marks / Reduce stretch marks", zh: "妊娠纹/减少妊娠纹" },
-              { en: "age spots / dark circles under the eyes", zh: "老年斑/黑眼圈" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 毛发生长类",
-            items: [
-              { en: "Stimulate hair growth", zh: "刺激头发生长" },
-              { en: "stop hair growth / Inhibit hair growth", zh: "停止/抑制头发生长" },
-              { en: "Prevent hair thinning / stop hair thinning", zh: "防止头发稀疏" },
-              { en: "reverse hair thinning / treat hair thinning", zh: "逆转/治疗头发稀疏" },
-              { en: "eyelash growth / Eyelashes growth", zh: "睫毛增长" },
-              { en: "hair growth / hair growing / hair follicle", zh: "头发生长/毛囊" },
-              { en: "fingernail growth / nail growth", zh: "指甲生长" },
-              { en: "beard growth / mustache growth", zh: "胡须生长" },
-              { en: "Alopecia, thinning hair, balding treatment, hair loss cure", zh: "脱发/稀疏/秃顶治疗" },
-              { en: "Treatment for hair loss / Treatment of baldness", zh: "脱发/秃顶治疗" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 身体塑形/减肥类",
-            items: [
-              { en: "Anti-Cellulite / cellulite", zh: "抗橘皮组织/橘皮组织" },
-              { en: "Reduce cellulite / reduce edema", zh: "减少橘皮组织/消肿" },
-              { en: "control edema / fat loss / lose weight", zh: "控制水肿/减脂/减肥" },
-              { en: "weight loss / slim / obesity", zh: "减肥/瘦身/肥胖" },
-              { en: "Orange peel skin / waffle skin", zh: "橘皮皮肤" },
-              { en: "body shaping (change circumference/fat/muscle)", zh: "身体塑形（改变周长/脂肪/肌肉张力）" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 疾病治疗/医疗功效类",
-            items: [
-              { en: "treatment / therapy / treat / cure", zh: "治疗/疗法" },
-              { en: "disease treatment / disease control / disease prevention", zh: "疾病治疗/控制/预防" },
-              { en: "Treat infections / Treat skin", zh: "治疗感染/治疗皮肤" },
-              { en: "arthritis / Athlete's foot / herpes", zh: "关节炎/香港脚/疱疹" },
-              { en: "diaper rash / Candidiasis", zh: "尿布疹/念珠菌病" },
-              { en: "rhinitis / hay fever / headaches / insomnia", zh: "鼻炎/花粉症/头痛/失眠" },
-              { en: "cough / Cramp / colic / spasms / twitch", zh: "咳嗽/抽筋/绞痛/痉挛/抽搐" },
-              { en: "Varicose veins / Vasodilation", zh: "静脉曲张/血管舒张" },
-              { en: "blood pressure / blood sugar / blood lipids", zh: "血压/血糖/血脂" },
-              { en: "Muscle atrophy / muscle pain / muscle contraction", zh: "肌肉萎缩/疼痛/收缩" },
-              { en: "nerve palsy / body numbness / arm/hand/foot/leg numbness", zh: "神经麻痹/身体麻木" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 助眠/情绪/保健类",
-            items: [
-              { en: "Promotes sleep / Helps sleep / aid sleep", zh: "促进睡眠/助眠" },
-              { en: "sleep aids / sleep inducing / deep sleep", zh: "助眠/催眠/深度睡眠" },
-              { en: "Fall asleep quickly / Sleep syndrome", zh: "快速入睡/睡眠综合征" },
-              { en: "improves mood / anti-anxiety", zh: "改善情绪/抗焦虑" },
-              { en: "Reduces stress / relieves depression", zh: "减压/缓解抑郁" },
-              { en: "Adjust body clock / Regulate biological clock", zh: "调整生物钟" },
-              { en: "quit smoking / hypnosis", zh: "戒烟/催眠" },
-              { en: "aromatherapy", zh: "芳香疗法（精油涉药）" },
-              { en: "traditional Chinese medicine", zh: "传统中药（涉药）" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 药物成分/活性表述",
-            items: [
-              { en: "Active ingredient / Active ingredients", zh: "活性成分（全球下架）" },
-              { en: "Medicinal ingredient / Medicinal ingredients", zh: "药用成分（全球下架）" },
-              { en: "Therapeutic ingredient / Therapeutic ingredients", zh: "治疗成分（全球下架）" },
-              { en: "bioactive / growth factor", zh: "生物活性/生长因子" },
-              { en: "effects on cells / effects on tissues / effects on living tissue", zh: "对细胞/组织/活体组织的影响" },
-              { en: "cellular level in vivo circulatory effects", zh: "体内细胞水平循环效应" },
-              { en: "Enhance gene activity", zh: "增强基因活性" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 去角质类（化学）",
-            items: [
-              { en: "Peeling", zh: "化学去角质（禁用，通常指化学成分去死皮）" },
-              { en: "Chemical Peel", zh: "化学焕肤（酸性物质去表皮层，禁用）" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 除臭喷雾类",
-            items: [
-              { en: "hygiene / hygienic", zh: "卫生（美国站下架）" },
-              { en: "Sanitation / Sanitariness", zh: "消毒/卫生（美国站下架）" },
-              { en: "Sterility / Aseptic", zh: "无菌（美国站下架）" },
-              { en: "Germ free", zh: "无菌（美国站下架）" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 牙科禁售品类",
-            items: [
-              { en: "dental bur / drill", zh: "牙钻（全站禁售）" },
-              { en: "dental handpiece", zh: "牙科手机+配件（全站禁售）" },
-              { en: "dental X-ray units", zh: "牙科X光设备+配件（全站禁售）" },
-              { en: "dental relining / repairing / rebasing resin", zh: "义齿衬垫/修理套装（全站禁售）" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 牙科宣传类（专业场景）",
-            items: [
-              { en: "professional / dentist / hospital", zh: "专业/牙医/医院（专业场景禁）" },
-              { en: "Surgical / Examination use / clinical", zh: "外科/检查用/临床（专业场景禁）" },
-              { en: "doctor recommend", zh: "医生推荐（专业场景禁）" },
-              { en: "Orthodontics / Straightening / Straightener", zh: "正畸/矫正（牙套禁描述）" },
-              { en: "anti-molar / 抗磨牙", zh: "抗磨牙（禁描述）" },
-              { en: "dental plaque / plaque", zh: "牙菌斑（违规）" },
-              { en: "caries / dental caries / Tooth decay / anti-cavity", zh: "蛀牙/防蛀" },
-              { en: "Strengthen tooth enamel / enamel", zh: "强化牙釉质" },
-              { en: "Teeth desensitization / tooth desensitization", zh: "牙齿脱敏" },
-              { en: "Treating Sensitive Teeth / treat sensitive teeth", zh: "治疗敏感牙齿" },
-              { en: "bad breath / tartar / Stain Removal", zh: "口臭/牙结石/去渍" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 指甲护理（药品类）",
-            items: [
-              { en: "Promote nail growth (physiological)", zh: "促进指甲生长（生理性涉药）" },
-              { en: "Anti-fungal / Anti-viral", zh: "抗真菌/抗病毒" },
-              { en: "Prevent fungal nail infections / nail infection", zh: "预防指甲真菌感染" },
-              { en: "nail diseases / nail fungus / Onychomycosis", zh: "指甲疾病/甲癣" },
-              { en: "Paronychia / Ingrown Toenail Relief", zh: "甲沟炎/缓解嵌甲" },
-              { en: "nail discoloration / brittle nail / weak nail / splitting nail", zh: "指甲变色/脆甲/脆弱/开裂" },
-              { en: "Athlete's foot / herpes", zh: "香港脚/疱疹" }
-            ]
-          },
-          {
-            category: "🚫 违规词 - 其他高频禁用词",
-            items: [
-              { en: "pigment / pigmentation / pigment*", zh: "色素/色素沉着" },
-              { en: "metabolism / growth / Inhibit / thinning", zh: "新陈代谢/生长/抑制/变薄" },
-              { en: "reduce / remove / repair / treatment / therapy", zh: "减少/去除/修复/治疗/疗法" },
-              { en: "instantly / rapidly / rapid / instantly", zh: "立即/快速" },
-              { en: "before / after / dead skin / cells", zh: "之前/之后/死皮/细胞" },
-              { en: "pain / painless / zero pain / pain-free", zh: "疼痛/无痛" },
-              { en: "bleed / Stop bleeding", zh: "出血/止血" },
-              { en: "antigingvltis / gingivitis / Gum desensitization", zh: "抗牙龈炎/牙龈脱敏" },
-              { en: "promote / enhance / detoxification", zh: "促进/增强/排毒" },
-              { en: "Flawless / anti-chafe / volumizing / maximizer", zh: "无瑕/抗摩擦/丰盈/最大化" },
-              { en: "callus / corn / Bunion", zh: "老茧/鸡眼/拇囊炎" },
-              { en: "correct / corrector / Prevention / Prevent", zh: "矫正/预防" },
-              { en: "Phototherapy / Light Therapy / led / IPX7 / IPX5", zh: "光疗/LED/防水等级" },
-              { en: "wrinkle / fine line reduction", zh: "皱纹/细纹减少" },
-              { en: "abrasions / Absorbs bruises / bruises or blue spots", zh: "擦伤/瘀伤" },
-              { en: "Albinism / Leukoplakia / white spots / Vitiligo", zh: "白化病/白斑/白癜风" },
-              { en: "Lip augmentation / swollen lips / thickening of lips", zh: "丰唇/嘴唇肿胀/增厚" },
-              { en: "乳房 enlargement / 性 activity / enhance sexual activity", zh: "丰胸/性活动" },
-              { en: "tattoo removal / tattoo remover", zh: "洗纹身" },
-              { en: "piercing care / puncture care", zh: "穿刺护理" },
-              { en: "photoaging / Protection against photoaging", zh: "光老化" },
-              { en: "Skin discoloration / skin disease", zh: "皮肤变色/皮肤病" },
-              { en: "Infection! / disease-causing organisms", zh: "感染/致病微生物" },
-              { en: "Clean the wound / sunburn powder", zh: "清洁伤口/晒伤粉" },
-              { en: "electroosmosis / Iontophoresis", zh: "电渗/离子导入" },
-              { en: "addiction / 疱疹 / Herps / 病毒", zh: "成瘾/疱疹/病毒" },
-              { en: "even out / resists swelling / Absorbs bumps / Absorbs swelling", zh: "均匀/抗肿胀" },
-              { en: "Warning: / Caution: / avoid stimulants", zh: "警告/注意/避免刺激物" },
-              { en: "Concealer / cover / coverage / cover-up / scar sheet", zh: "遮瑕/遮盖（非痤疮类可用）" },
-              { en: "Skin barrier! / stress relief / relax!", zh: "皮肤屏障/减压/放松" },
-              { en: "No more sunburn! / sunburn relief", zh: "不再晒伤/缓解晒伤" },
-              { en: "inject / injection", zh: "注射" },
-              { en: "Antiperspirants for hyperhidrosis", zh: "多汗症止汗剂" },
-              { en: "sweating due to hormonal changes / imbalances", zh: "荷尔蒙变化引起的出汗" },
-              { en: "Antiperspirant pads / antibacterial pads", zh: "止汗垫/抗菌垫" },
-              { en: "Soothes scratches, bites, insect stings", zh: "舒缓擦伤/叮咬/昆虫蜇伤" },
-              { en: "Warning: avoid scars, age spots, dark circles, stretch marks", zh: "警告避免疤痕/老年斑/黑眼圈/妊娠纹" },
-              { en: "May cause... / Caution: if pain persists", zh: "可能导致/如疼痛持续请就医" },
-              { en: "No pain, without pain / painess", zh: "无痛" },
-              { en: "Promotes, helps, aids sleep", zh: "促进/帮助/助眠" },
-              { en: "relief the pain / Relieve scalp", zh: "缓解疼痛/舒缓头皮" },
-              { en: "Scalp treatment / Treat scalp / Treat dry mouth", zh: "头皮治疗/治疗口干" },
-              { en: "Treat burns / Treat fat / treat fungal", zh: "治疗烧伤/治疗脂肪/治疗真菌" },
-              { en: "Teeth Wear / tooth wear", zh: "牙齿磨损" },
-              { en: "Treat baldness / Treatment of Thinning Hair", zh: "治疗秃顶/治疗稀疏头发" },
-              { en: "waffle skin / Orange peel skin", zh: "橘皮皮肤" },
-              { en: "Wrinkle removal / stains / stain / odor", zh: "祛皱/污渍/异味" },
-              { en: "Removes Plaque & Surface Stains / Plaque & Stains", zh: "去除牙菌斑和表面污渍" },
-              { en: "Removes Surface Stains / Stain Remover", zh: "去除表面污渍/去渍剂" },
-              { en: "Plaque & Tartar Control", zh: "牙菌斑和牙结石控制" }
-            ]
-          },
-
-          // ========== ✅ 第二部分：可用词 ==========
-          {
-            category: "✅ 可用词 - 抗衰化妆品表述（全球可用）",
-            items: [
-              { en: "Reduces the appearance of fine lines, wrinkles, crow's feet, smile lines, frown lines, etc.", zh: "减少细纹、皱纹等的外观" },
-              { en: "Moisturizes skin to make wrinkles less noticeable", zh: "滋润皮肤使皱纹不那么明显" },
-              { en: "Make skin look smoother and firmer", zh: "使皮肤看起来更光滑、更紧致" },
-              { en: "Visibly minimize wrinkles, fine lines, etc.", zh: "明显减少皱纹、细纹等的观感" },
-              { en: "Leave skin looking healthy, smooth, and with a youthful glow", zh: "让皮肤看起来健康、光滑、焕发青春光彩" },
-              { en: "Anti-aging skincare; make skin younger-looking", zh: "抗衰老护肤品；使皮肤看起来更年轻" }
-            ]
-          },
-          {
-            category: "✅ 可用词 - 抗衰替代词（美加站点替代anti-wrinkle）",
-            items: [
-              { en: "Firms skin", zh: "紧致肌肤" },
-              { en: "Tightens skin", zh: "收紧肌肤" },
-              { en: "Tones skin", zh: "调理肌肤" },
-              { en: "Conditions skin", zh: "调理肌肤" },
-              { en: "Smoothes skin", zh: "抚平肌肤" },
-              { en: "Softens skin", zh: "软化肌肤" },
-              { en: "Wrinkles appear / look reduced", zh: "皱纹看起来减少" },
-              { en: "Diminishes the look of aging", zh: "减少衰老迹象的观感" },
-              { en: "Reduces the look of aging", zh: "减少衰老迹象的观感" },
-              { en: "Reduces the signs of aging", zh: "减少衰老迹象" },
-              { en: "Reduces the look of ...", zh: "减少...的外观（核心合规句式）" }
-            ]
-          },
-          {
-            category: "✅ 可用词 - Anti-aging skincare（美加可用）",
-            items: [
-              { en: "Anti-aging skincare", zh: "抗衰老护肤品（搭配skincare可上美加，需无其他药物描述）" },
-              { en: "make skin younger-looking", zh: "使皮肤看起来更年轻" },
-              { en: "总结：Anti-aging skincare 这个词组上全球", zh: "结论：Anti-aging + skincare 组合全球合规可用" }
-            ]
-          },
-          {
-            category: "✅ 可用词 - 美白提亮类（全球可用）",
-            items: [
-              { en: "Brighten / brightening", zh: "提亮（全球可用）" },
-              { en: "Boost radiance", zh: "提升光泽" },
-              { en: "make the skin appear lighter, brighter, or more radiant", zh: "使皮肤看起来更浅、更亮或更容光焕发" },
-              { en: "Visibly brighten and smooth the look of uneven complexion", zh: "明显提亮和抚平肤色不均的外观" },
-              { en: "Reduce the look of (or appearance of) dark spots, discoloration", zh: "减少黑斑、变色的外观" },
-              { en: "Create a more even-looking skin tone", zh: "打造更均匀的肤色" },
-              { en: "Reduces the look of dark circles, bruises or blue spots", zh: "减少黑眼圈、瘀伤或青斑的外观" },
-              { en: "护肤品建议用成分做卖点（如烟酰胺/VC）", zh: "护肤品建议用成分做卖点，不直接说美白" }
-            ]
-          },
-          {
-            category: "✅ 可用词 - 痤疮整改方向",
-            items: [
-              { en: "Covers acne", zh: "遮盖痤疮（合规）" },
-              { en: "Conceals acne", zh: "隐藏痤疮（合规）" },
-              { en: "Cleans skin", zh: "清洁皮肤（合规）" },
-              { en: "Cleanses skin", zh: "清洁皮肤（合规）" }
-            ]
-          },
-          {
-            category: "✅ 可用词 - 撕拉膜类（无药物声明可用）",
-            items: [
-              { en: "peel-off mask (撕拉面膜/手膜/足膜/唇膜)", zh: "撕拉面膜/手膜/足膜/唇膜（无其他药物声明属化妆品，可正常售卖）" },
-              { en: "前提：无化学去角质等其他药物声明", zh: "前提：无化学去角质等其他药物声明" }
-            ]
-          },
-          {
-            category: "✅ 可用词 - 美黑类（仅免晒类）",
-            items: [
-              { en: "sunless tanner", zh: "免晒美黑（允售）" },
-              { en: "sunless tanning", zh: "免晒美黑（允售）" }
-            ]
-          },
-          {
-            category: "✅ 可用词 - 尼日利亚等31国允许（非发达地区）",
-            items: [
-              { en: "Skin lightening/whitening - 美白", zh: "美白（仅尼日利亚等31国允许）" },
-              { en: "Eliminates age spots/liver spots/freckles/melasma - 祛斑", zh: "祛斑（仅尼日利亚等31国允许）" },
-              { en: "Healing the skin / 修复肌肤的保湿屏障 - 修复", zh: "修复（仅尼日利亚等31国允许）" },
-              { en: "Anti-wrinkle / Anti-aging - 抗皱抗衰", zh: "抗皱抗衰（仅尼日利亚等31国允许）" },
-              { en: "Anti-acne / Clears/Prevents/Stops/Fights acne - 祛痘", zh: "祛痘（仅尼日利亚等31国允许）" },
-              { en: "去除头皮屑【非永久】- 去屑", zh: "去屑（仅尼日利亚等31国允许，非永久）" },
-              { en: "要求：仅允许出现上述词汇，无更进一步药物表述", zh: "要求：仅单个词出现，无增加/减少/抑制/细胞/再生等附带描述" }
-            ]
-          },
-          {
-            category: "✅ 可用词 - 去角质类（物理去角质）",
-            items: [
-              { en: "Exfoliation", zh: "去角质（通用术语，涵盖所有去角质过程）" },
-              { en: "Scrubbing", zh: "磨砂（物理磨砂膏去角质，不管控）" },
-              { en: "Physical Exfoliation", zh: "物理去角质（不管控）" },
-              { en: "through beads, seeds or granules", zh: "通过颗粒/种子物理去角质（明确说明物理原因即可）" },
-              { en: "上新注意：货品属性选【物理去角质】", zh: "上新注意：货品属性-功效选【物理去角质】" }
-            ]
-          },
-          {
-            category: "✅ 可用词 - 指甲护理（化妆品类）",
-            items: [
-              { en: "Protect the nails", zh: "保护指甲（合规）" },
-              { en: "Keeping nails in good condition", zh: "保持指甲良好状态（合规）" },
-              { en: "Change appearance", zh: "改变指甲外观（合规）" },
-              { en: "通过保护指甲免受物理损伤促进生长", zh: "通过保护免受物理损伤（磨损/碎裂/断裂）来促进生长（合规）" }
-            ]
-          },
-          {
-            category: "✅ 可用词 - 洗手液类",
-            items: [
-              { en: "hand wash", zh: "洗手液（合规）" },
-              { en: "liquid soap", zh: "洗手液（合规）" },
-              { en: "避免使用 Sanitizer", zh: "避免使用 Sanitizer（涉消毒杀菌剂宣称）" }
-            ]
-          }
-        ];
+        // ===== 涉药违规自查指南（依据《涉药违规 · 商家自查提醒》整理）=====
+        const complianceGuide = {
+            hero: {
+                eyebrow: 'COMPLIANCE REMINDER · 商家合规提醒',
+                title: '涉药违规 自查指南',
+                titleSub: '面部护肤 & 防晒美黑',
+                intro: '化妆品仅用于清洁、美容等基础功能，<u>禁止宣称医疗功效</u>。标题、详情页若出现医疗化表述即属<u>文字类违规</u>；使用夸张对比图、生理特征图等暗示性宣传同样违规。',
+                legend: [
+                    { ic: 'fa-check', cls: 'ok', label: '可用表述' },
+                    { ic: 'fa-times', cls: 'ban', label: '违规表述' },
+                    { ic: 'fa-exclamation', cls: 'warn', label: '特别提示' },
+                    { ic: 'fa-camera', cls: 'img', label: '图片尺度红线' }
+                ]
+            },
+            sections: [
+                {
+                    no: '01', title: '先说清：化妆品 vs 药品', sub: '判断商品是否涉药的第一标准',
+                    blocks: [
+                        {
+                            t: 'dual',
+                            cards: [
+                                {
+                                    icon: '🌸', cls: 'cos', title: '化妆品',
+                                    ps: ['用于清洁、美化、提升吸引力或<b>改变外观</b>的物品（或改变外观的组成部分）。',
+                                         '如：护肤霜、香水、口红、彩妆、洗发水、染发剂、除臭剂。']
+                                },
+                                {
+                                    icon: '💊', cls: 'drug', title: '药品',
+                                    ps: ['用于<b>诊断、治愈、缓解、治疗或预防疾病</b>，或影响人体结构/功能的物品。',
+                                         '疾病包括任何伤害、病痛或不利状况，无论是身体还是精神。']
+                                }
+                            ],
+                            foot: '高频违规：宣称治疗功效（如抗菌/抗炎、治疗脱发、促进胶原蛋白生成等）、使用医疗术语；使用夸张对比图、生理特征图等暗示性宣传也属于违规情形。'
+                        }
+                    ]
+                },
+                {
+                    no: '02', title: '抗衰 · 祛皱 · 修复', sub: '高频违规重灾区',
+                    blocks: [
+                        {
+                            t: 'words', tone: 'ok', head: '✅ 可用描述（全站点）', tag: '合规',
+                            items: [
+                                { zh: '抗衰老护肤', en: 'Anti-aging skincare；Age-defying skincare' },
+                                { zh: '抗皱护肤', en: 'Anti-wrinkles skincare' },
+                                { zh: '舒缓皮肤', en: 'Sooth skin' },
+                                { zh: '保湿、舒缓皮肤屏障', en: 'Moisturizes / soothes the skin barrier' },
+                                { zh: '保湿、润滑', en: 'Hydrates / Lubricates / Moisturizes' },
+                                { zh: '紧致 / 调理 / 抚平 / 软化肌肤', en: 'Firms / Tightens / Tones / Conditions / Smoothes / Softens skin' },
+                                { zh: '补充 / 保护皮肤的水分屏障', en: "Replenish / Protect the skin's moisture barrier" },
+                                { zh: '皱纹看起来减少', en: 'Wrinkles appear / look reduced' },
+                                { zh: '减少细纹、皱纹、鱼尾纹、笑纹、皱眉纹等的外观', en: "Reduces the appearance of fine lines, wrinkles, crow's feet, smile lines, frown lines, etc." },
+                                { zh: '滋润肌肤，使皱纹不那么明显', en: 'Moisturizes skin to make wrinkles less noticeable' },
+                                { zh: '使肌肤看起来更光滑、更紧致', en: 'Make skin look smoother and firmer' },
+                                { zh: '让肌肤看起来更年轻', en: 'make skin younger-looking' },
+                                { zh: '让肌肤看起来健康、光滑，散发年轻光泽', en: 'Leave skin looking healthy, smooth, and with a youthful glow' },
+                                { zh: '减少衰老迹象', en: 'Diminishes / Reduces the look or the signs of aging' },
+                                { zh: '看起来焕然一新', en: 'Looks visibly rejuvenated' },
+                                { zh: '剃须 / 脱毛后冷却 / 舒缓皮肤', en: 'Cools / Soothes skin after shaving / epilation' }
+                            ]
+                        },
+                        {
+                            t: 'words', tone: 'ban', head: '❌ 不可用描述（全站点）', tag: '违规',
+                            items: [
+                                { zh: '祛皱', en: 'Wrinkle removal' },
+                                { zh: '焕肤', en: 'Rejuvenate' },
+                                { zh: '去除 / 治疗细纹、皱纹、鱼尾纹、笑纹、皱眉纹等', en: "Reduce fine line; Removes/treats fine lines, wrinkles, crow's feet, smile lines, frown lines, etc." },
+                                { zh: '帮助产生 / 刺激 / 增加胶原蛋白、弹性蛋白、成纤维细胞等', en: 'Aids in the production / stimulates / increases collagen, elastin, fibroblasts, etc.' },
+                                { zh: '肉毒杆菌 / 填充剂的替代品', en: 'Alternative to Botox / filler' },
+                                { zh: '增加细胞更新、细胞再生、愈合', en: 'Increases cell turnover, cell regeneration, healing' },
+                                { zh: '影响 / 渗透表皮 / 真皮（角质层以外的任何皮肤层）', en: 'Affects / penetrates the epidermis / dermis (any layer of skin besides the stratum corneum)' },
+                                { zh: '增加胶原蛋白和弹性蛋白的产生', en: 'Increases production of collagen and elastin' },
+                                { zh: '再生 / 恢复细胞', en: 'Regenerates / Revives cells' },
+                                { zh: '增强基因活性', en: 'Boosts activity of gene' },
+                                { zh: '防止皮肤老化', en: 'Prevent aging of the skin' },
+                                { zh: '再生恢复细胞、增强基因活性、调回生物钟', en: '' },
+                                { zh: '防止面部肌肉收缩', en: '' },
+                                { zh: '防止光老化和 / 或相关损伤', en: 'photoaging' },
+                                { zh: '促进皮肤愈合', en: '' },
+                                { zh: '通过离子透入和类似机制，渗透至较深的真皮层', en: '' },
+                                { zh: '生理性改变因微弱扩张或毛细血管缺陷而变红的皮肤外观', en: '' },
+                                { zh: '抗敏、防敏、脱敏', en: '' },
+                                { zh: '治愈 / 修复皮肤', en: 'Healing the skin' }
+                            ]
+                        },
+                        {
+                            t: 'note', tone: 'warn', head: '⚠️ 特别注意', tag: '注意',
+                            items: [
+                                '含肽（peptide）的化妆品，不能描述抗衰老，因此肽和 Anti-aging / Anti-aging skincare / Age-defying 不可以同时出现在商品描述上。'
+                            ]
+                        },
+                        {
+                            t: 'images',
+                            ok: { title: '✅ 可接受', text: '有皱纹的中老年模特 · 轻微箭头、线条强调功效', chips: ['有皱纹中老年模特', '自然皱纹模特', '轻微线条强调', '轻微箭头强调'] },
+                            no: { title: '⚠️ 不可以', text: '对比图 · 夸张皱纹 · 暗示图 · 在皱纹上使用箭头或圆圈暗示功效 · 大量箭头 · 发光特效', chips: ['发光网格', '大量箭头暗示', '圆圈暗示指向皱纹', '对比图', '圆圈暗示圈注皱纹'] }
+                        }
+                    ]
+                },
+                {
+                    no: '03', title: '美白 · 祛斑', sub: '注意法国、摩纳哥特殊管控',
+                    blocks: [
+                        {
+                            t: 'words', tone: 'ok', head: '✅ 可用描述（全站点，除法国、摩纳哥）', tag: '合规',
+                            items: [
+                                { zh: '提亮肤色', en: 'Brighten skin' },
+                                { zh: '提升光泽', en: 'Boost radiance' },
+                                { zh: '打造更均匀的肤色', en: 'Create a more even-looking skin tone' },
+                                { zh: '使皮肤看起来更浅、更亮或更容光焕发', en: 'Make the skin appear lighter, brighter, or more radiant' },
+                                { zh: '减少黑眼圈、瘀伤、青斑、黑斑、老年斑、变色的外观', en: 'Reduces the look of dark circles, bruises or blue spots, dark spots, age spot, discoloration' },
+                                { zh: '', en: 'Radiance / Luminous / Glow / Illuminating' }
+                            ]
+                        },
+                        {
+                            t: 'words', tone: 'ban', head: '❌ 不可用描述（全站点）', tag: '违规',
+                            items: [
+                                { zh: '皮肤脱色 / 褪色', en: 'Skin de-pigmentation / fading pigment' },
+                                { zh: '皮肤漂白', en: 'Skin bleaching' },
+                                { zh: '增加 / 减少 / 抑制皮肤中黑色素 / 色素的产生', en: 'Increase / decrease / Inhibit the production of melanin (pigment) in the skin' },
+                                { zh: '生理性地降低瘀伤、蓝斑等变色的可见度', en: '' },
+                                { zh: '去除受阳光损伤的癌前细胞', en: 'Strips off sun-damaged precancerous cells' },
+                                { zh: '化学纹身去除剂（用设备 / 笔将物质注射到表皮下，诱导炎症反应以从真皮提取墨水）', en: 'Chemical tattoo removal injected under the epidermis' },
+                                { zh: '色素沉着疾病，如黄褐斑、雀斑', en: '' },
+                                { zh: '防止出现新的斑点', en: 'Prevents new spots from appearing' },
+                                { zh: '防止老年斑的发生', en: 'Prevents the onset / emergence of age spot' },
+                                { zh: '治疗炎症后色素沉着过度、晒伤、变色、不需要的黑色素', en: 'Treats post-inflammatory hyperpigmentation, sun damage, discoloration, unwanted melanin' },
+                                { zh: '淡化 / 消除黑痕、变色', en: 'Fades / eliminates dark marks, discoloration' },
+                                { zh: '生理性地降低黑眼圈的可见度', en: '' },
+                                { zh: '', en: 'Dark spot correct / Dark spot Cream / Dark spot Serum' }
+                            ]
+                        },
+                        {
+                            t: 'note', tone: 'warn', head: '⚠️ 不可用描述（法国、摩纳哥）', tag: '附加管控',
+                            items: [
+                                'bright / brighten / brightening / brighter 单独出现时不管控；但与以下任一高相关美白成分同时出现时，管控下法国、摩纳哥站点：Hydroquinone（氢醌）、Kojic Acid（曲酸）、Arbutin（熊果苷）、4-Butylresorcinol、Phenylethyl Resorcinol、Tranexamic Acid（传明酸）、Cysteamine、Undecylenoyl Phenylalanine、Hexylresorcinol、Glabridin（光甘草定）。',
+                                '时效性美白表达：宣传“短时间内快速变白 / 提亮”可能构成夸大、虚假宣传，需整改。表述如 instant / seconds / minutes / days（7 days、5 days、3 days、24 hours）等，与 white / shining / brighten 等组合突出短期效果。',
+                                '其他高风险词：fading、freckles、melasma、whiten、whitening、bleaching、lightening、pigmentation、dark spot。'
+                            ]
+                        },
+                        {
+                            t: 'images',
+                            ok: { title: '✅ 可接受', text: '亮白皮肤 · 轻微斑点模特图', chips: ['亮白皮肤', '均匀肤色', '轻微斑点', '亮白·轻微斑点模特图（多图拼接）'] },
+                            no: { title: '⚠️ 不可以', text: '对比图 · 夸张暗沉图 · 密集斑点 · 暗示图', chips: ['密集斑点', '夸张暗沉', '对比图'] },
+                            foot: '若类目属于 BB / CC / DD / 素颜霜，且商品附带一次性可洗去的即时美白遮瑕效果，可以使用对比图。'
+                        }
+                    ]
+                },
+                {
+                    no: '04', title: '祛痘 · 去角质 · 黑头 · 毛孔', sub: '出现黑头 / 红肿痘痘极易触发恶心限投',
+                    blocks: [
+                        {
+                            t: 'words', tone: 'ok', head: '✅ 可用描述（全站点）', tag: '合规',
+                            items: [
+                                { zh: '遮盖 / 隐藏痤疮', en: 'Covers / Conceals acne' },
+                                { zh: '改善痤疮疤痕的外观', en: 'Improve the look of acne scars' },
+                                { zh: '清洁皮肤', en: 'Cleans / Cleanses skin' },
+                                { zh: '明确说明通过物理原因去角质、去死皮', en: 'Exfoliation of dead skin' },
+                                { zh: '去除堵塞的皮脂管（“毛孔 pores”）、堆积皮脂和皮屑，以清洁 / 保护 / 保持皮肤良好状态（只影响原发性粉刺外观，不能预防或治疗痤疮）', en: 'Removes clogged sebum duct, excess sebum and skin debris' },
+                                { zh: '隐形、缩小毛孔', en: 'Invisible pores / Minimize pore' }
+                            ]
+                        },
+                        {
+                            t: 'words', tone: 'ban', head: '❌ 不可用描述（全站点）', tag: '违规',
+                            items: [
+                                { zh: '化学去角质', en: 'Peel' },
+                                { zh: '未明确说明通过物理原因的去角质、去死皮', en: 'Exfoliation of dead skin' },
+                                { zh: '', en: 'Anti-acne' },
+                                { zh: '', en: 'Prevent acne' },
+                                { zh: '', en: 'Blackheads remover' },
+                                { zh: '', en: 'Reduce blackheads' },
+                                { zh: '', en: 'Tag / Wart patch' },
+                                { zh: '', en: 'Clears / Prevents / Stops / Fights acne' },
+                                { zh: '抗炎、抑菌作用', en: 'Anti-inflammatory, antibacterial effects' },
+                                { zh: '调节皮脂分泌', en: 'Regulating sebum secretion' },
+                                { zh: '防止痘疤', en: 'Preventing acne scars' }
+                            ]
+                        },
+                        {
+                            t: 'images',
+                            ok: { title: '✅ 合规图片', text: '清洁、遮盖、物理去角质等不触发限投的画面', chips: ['清洁皮肤', '物理磨砂', '遮盖痤疮'] },
+                            no: { title: '⚠️ 触发恶心限投', text: '图片出现黑头、红肿痘痘、密集角质、密集毛孔，都会触发恶心限投', chips: ['红肿脓包痘痘', '黑头', '密集毛孔和角质'] }
+                        }
+                    ]
+                },
+                {
+                    no: '05', title: '防晒', sub: '美加澳新站点禁售管控',
+                    blocks: [
+                        {
+                            t: 'words', tone: 'ban', head: '❌ 全站点不可用', tag: '违规',
+                            items: [
+                                { zh: '', en: 'sunburn' },
+                                { zh: '', en: 'photoaging' }
+                            ]
+                        },
+                        {
+                            t: 'words', tone: 'ban', head: '⛔ 美国、加拿大、澳大利亚、新西兰防晒禁售', tag: '禁售',
+                            items: [
+                                { zh: '上新时属性-功效必选“防晒”，会自动禁售美加澳新 4 站点', en: '' }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    no: '06', title: '美黑', sub: '免晒美黑可用，强效 / 加速美黑违规',
+                    blocks: [
+                        {
+                            t: 'words', tone: 'ok', head: '✅ 可用描述（全站点）', tag: '合规',
+                            items: [
+                                { zh: '免晒美黑', en: 'sunless tanning' }
+                            ]
+                        },
+                        {
+                            t: 'words', tone: 'ban', head: '❌ 不可用描述（全站点）', tag: '违规',
+                            items: [
+                                { zh: '强效美黑', en: 'Intense tanning' },
+                                { zh: '加速美黑', en: 'Accelerate tanning' },
+                                { zh: '热晒黑产品', en: 'Hot tanning products' },
+                                { zh: '声称可以在日光浴室中增强晒黑的产品', en: '' },
+                                { zh: '含有通过血管舒张作用的物质（例如苄基和烟酸甲酯）的产品', en: '' }
+                            ]
+                        },
+                        {
+                            t: 'images',
+                            ok: { title: '✅ 可使用', text: '可使用对比图展示美黑效果', chips: ['BEFORE / AFTER 美黑效果对比'] }
+                        }
+                    ]
+                },
+                {
+                    no: '07', title: '部分站点特殊可用', sub: '允许使用修复、抗衰、祛痘、美白等更强功效描述',
+                    blocks: [
+                        {
+                            t: 'countries',
+                            intro: '部分站点可用修复、抗衰、祛痘、美白等描述，站点明细：',
+                            countries: ['尼日利亚', '阿尔及利亚', '摩洛哥', '毛里求斯', '哥斯达黎加', '洪都拉斯', '多米尼加', '哥伦比亚', '秘鲁', '厄瓜多尔', '乌拉圭', '特立尼达和多巴哥', '阿塞拜疆', '格鲁吉亚', '亚美尼亚', '安道尔', '巴基斯坦', '斯里兰卡', '蒙古', '文莱', '哈萨克斯坦', '乌兹别克斯坦', '吉尔吉斯斯坦', '卡塔尔', '科威特', '阿曼', '约旦', '巴林']
+                        },
+                        {
+                            t: 'words', tone: 'ok', head: '✅ 仅以上站点可用描述', tag: '合规',
+                            items: [
+                                { zh: '抗衰', en: 'Anti-aging' },
+                                { zh: '抗皱', en: 'Anti-wrinkle' },
+                                { zh: '治愈皮肤', en: 'Healing the skin' },
+                                { zh: '修复', en: 'repair' },
+                                { zh: '皮肤美白', en: 'Skin lightening / whitening' },
+                                { zh: '消除 / 治疗老年斑、肝斑、老年性雀斑、雀斑、黄褐斑等', en: 'Eliminates / Treats age spots, liver spots, senile lentigines, freckles, melasma, chloasma' },
+                                { zh: '祛痘、祛痤疮', en: 'Anti-acne' },
+                                { zh: '清除 / 治愈 / 预防 / 阻止 / 治疗 / 对抗痤疮', en: 'Clears / Heals / Prevents / Stops / Treats / Fights acne' }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    no: '08', title: '其他涉药词', sub: 'Common drug-related words',
+                    blocks: [
+                        {
+                            t: 'words', tone: 'ban', head: '❌ 其他涉药词', tag: '违规',
+                            items: [
+                                { zh: '', en: 'rejuvenat / rejuvenating / rejuvenation' },
+                                { zh: '临床', en: 'Clinical' },
+                                { zh: '治疗', en: 'Treatment' },
+                                { zh: '', en: 'calms the skin' },
+                                { zh: '', en: 'fine line reduction' },
+                                { zh: '', en: 'Fade Fine Lines' },
+                                { zh: '', en: 'results in 2 minutes' },
+                                { zh: '抗菌、抗真菌、抗微生物', en: 'Anti-Bacterial / Anti-Fungal / Anti-Microbial' }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            final: {
+                title: '合规提示',
+                text: '请商家务必对照自查商品标题、详情文字与主图，避免涉药违规导致限投、恶心限投或处罚。',
+                sign: '美容和个人护理 · 合规提醒',
+                src: '本页依据《涉药违规 · 商家自查提醒》（美容和个人护理合规指引）整理，实际判定请以平台最新政策为准。'
+            }
+        };
         // 成分数据
         const ingredientsData = [
             // 基础保湿锁水类
@@ -3737,128 +3781,223 @@
             return card;
         }
 
-        // 渲染违规词对照页面（改进版，左右对齐）
-        // 渲染违规词对照页面（改进版，左右对齐 + 底部提示气泡）
-        function renderProhibitedWords(data) {
-            ingredientsContainer.innerHTML = '';
-            ingredientsContainer.className = 'flex flex-col gap-6';
-            
-            var quickNav = document.getElementById('quick-nav');
-            if (quickNav) quickNav.innerHTML = '';
-
-            var wrapper = document.createElement('div');
-            wrapper.className = 'w-full bg-white rounded-xl shadow-soft p-6';
-            
-            // 创建标题区域
-            var headerDiv = document.createElement('div');
-            headerDiv.className = 'flex items-center justify-between mb-6';
-            
-            var title = document.createElement('h2');
-            title.className = 'text-2xl font-bold text-gray-800';
-            title.textContent = '违规词参考 - 中英文对照';
-            headerDiv.appendChild(title);
-            
-            // 创建切换按钮组
-            var tabGroup = document.createElement('div');
-            tabGroup.className = 'flex rounded-lg overflow-hidden border border-gray-200';
-            
-            var btnProhibited = document.createElement('button');
-            btnProhibited.id = 'tab-prohibited';
-            btnProhibited.className = 'px-4 py-2 text-sm font-medium transition-colors';
-            btnProhibited.textContent = '违规词';
-            tabGroup.appendChild(btnProhibited);
-            
-            var btnAllowed = document.createElement('button');
-            btnAllowed.id = 'tab-allowed';
-            btnAllowed.className = 'px-4 py-2 text-sm font-medium transition-colors';
-            btnAllowed.textContent = '可用词';
-            tabGroup.appendChild(btnAllowed);
-            
-            headerDiv.appendChild(tabGroup);
-            wrapper.appendChild(headerDiv);
-            
-            ingredientsContainer.appendChild(wrapper);
-
-            // 更新按钮状态
-            function updateTabStyles() {
-                if (currentProhibitedTab === 'prohibited') {
-                    btnProhibited.className = 'px-4 py-2 text-sm font-medium transition-colors bg-gradient-primary text-white';
-                    btnAllowed.className = 'px-4 py-2 text-sm font-medium transition-colors bg-white text-gray-600 hover:bg-gray-50';
-                } else {
-                    btnProhibited.className = 'px-4 py-2 text-sm font-medium transition-colors bg-white text-gray-600 hover:bg-gray-50';
-                    btnAllowed.className = 'px-4 py-2 text-sm font-medium transition-colors bg-gradient-primary text-white';
-                }
+        // ===== 渲染：涉药违规自查指南（违规词参考页）=====
+        function cgEscape(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        function cgMatch(text, term) {
+            if (!term) return true;
+            return String(text).toLowerCase().includes(String(term).toLowerCase());
+        }
+        // 在已插入的 DOM 上高亮搜索词（保留 <u>/<b> 等标签）
+        function cgHighlightDOM(root, term) {
+            if (!term) return;
+            const t = String(term).toLowerCase();
+            const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+            const targets = [];
+            let n;
+            while ((n = walker.nextNode())) {
+                if (n.parentNode && n.parentNode.nodeName !== 'MARK' &&
+                    n.nodeValue.toLowerCase().includes(t)) targets.push(n);
             }
-            updateTabStyles();
-
-            // 根据当前标签筛选数据
-            var filteredData = data.filter(function(cat) {
-                if (currentProhibitedTab === 'prohibited') {
-                    return cat.category.indexOf('🚫') === 0;
-                } else {
-                    return cat.category.indexOf('✅') === 0;
+            targets.forEach(function (tn) {
+                const val = tn.nodeValue, low = val.toLowerCase();
+                const frag = document.createDocumentFragment();
+                let i = 0, j;
+                while ((j = low.indexOf(t, i)) !== -1) {
+                    if (j > i) frag.appendChild(document.createTextNode(val.slice(i, j)));
+                    const m = document.createElement('mark');
+                    m.textContent = val.slice(j, j + term.length);
+                    frag.appendChild(m);
+                    i = j + term.length;
                 }
-            });
-
-            filteredData.forEach(function(category) {
-                var categoryDiv = document.createElement('div');
-                categoryDiv.className = 'mb-8';
-                
-                var catTitle = document.createElement('h3');
-                catTitle.className = 'text-lg font-semibold text-primary mb-3 pb-1 border-b border-gray-200';
-                catTitle.textContent = category.category;
-                categoryDiv.appendChild(catTitle);
-
-                var grid = document.createElement('div');
-                grid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-4';
-
-                category.items.forEach(function(item) {
-                    var enDiv = document.createElement('div');
-                    enDiv.className = 'text-gray-700';
-                    enDiv.textContent = item.en;
-                    var zhDiv = document.createElement('div');
-                    zhDiv.className = 'text-gray-700';
-                    zhDiv.textContent = item.zh;
-                    grid.appendChild(enDiv);
-                    grid.appendChild(zhDiv);
-                });
-
-                categoryDiv.appendChild(grid);
-                wrapper.appendChild(categoryDiv);
-            });
-
-            // 绑定切换事件
-            btnProhibited.addEventListener('click', function() {
-                currentProhibitedTab = 'prohibited';
-                filterIngredients();
-            });
-            btnAllowed.addEventListener('click', function() {
-                currentProhibitedTab = 'allowed';
-                filterIngredients();
+                if (i < val.length) frag.appendChild(document.createTextNode(val.slice(i)));
+                tn.parentNode.replaceChild(frag, tn);
             });
         }
 
-        // 过滤违规词数据
-        function filterProhibitedWords(data, searchTerm) {
-            if (!searchTerm) return data; // 无搜索词时返回原数据
+        // Hero
+        function heroHTML(hero) {
+            let s = '<div class="cg-card cg-hero">';
+            s += `<div class="cg-eyebrow">${cgEscape(hero.eyebrow)}</div>`;
+            s += `<div class="cg-h1">${cgEscape(hero.title)}<br><span class="cg-h1-sub">${cgEscape(hero.titleSub)}</span></div>`;
+            s += `<div class="cg-intro">${hero.intro}</div>`;
+            s += '<div class="cg-legend">' + hero.legend.map(function (l) {
+                return `<span class="cg-legend-item"><span class="cg-legend-ic ${l.cls}"><i class="fa ${l.ic}"></i></span>${cgEscape(l.label)}</span>`;
+            }).join('') + '</div>';
+            s += '</div>';
+            return s;
+        }
 
-            const lowerTerm = searchTerm.toLowerCase();
-            const filtered = [];
-
-            data.forEach(category => {
-                const filteredItems = category.items.filter(item => 
-                    item.en.toLowerCase().includes(lowerTerm) || 
-                    item.zh.includes(lowerTerm) // 中文直接包含即可
-                );
-                if (filteredItems.length > 0) {
-                    filtered.push({
-                        category: category.category,
-                        items: filteredItems
-                    });
-                }
+        // 表述词框（ok / ban）
+        function wordsHTML(b, term) {
+            let items = b.items;
+            if (term) {
+                items = items.filter(function (it) { return cgMatch(it.zh + ' ' + it.en, term); });
+                if (!items.length) return null;
+            }
+            const liic = b.tone === 'ok' ? '✓' : '✕';
+            let s = `<div class="cg-box ${b.tone}"><div class="cg-box-head"><span class="cg-box-title">${cgEscape(b.head)}</span><span class="cg-box-tag">${cgEscape(b.tag)}</span></div><ul class="cg-list">`;
+            items.forEach(function (it) {
+                s += `<li class="cg-li"><span class="cg-li-ic">${liic}</span><span class="cg-li-txt">`;
+                if (it.zh) s += cgEscape(it.zh);
+                if (it.zh && it.en) s += ' ';
+                if (it.en) s += cgEscape(it.en);
+                s += '</span></li>';
             });
+            s += '</ul></div>';
+            return s;
+        }
 
-            return filtered;
+        // 特别注意框
+        function noteHTML(b, term) {
+            let items = b.items;
+            if (term) {
+                items = items.filter(function (x) { return cgMatch(x, term); });
+                if (!items.length) return null;
+            }
+            let s = `<div class="cg-box warn"><div class="cg-box-head"><span class="cg-box-title">${cgEscape(b.head)}</span><span class="cg-box-tag">${cgEscape(b.tag)}</span></div><ul class="cg-list">`;
+            items.forEach(function (x) {
+                s += `<li class="cg-li"><span class="cg-li-ic">!</span><span class="cg-li-txt">${cgEscape(x)}</span></li>`;
+            });
+            s += '</ul></div>';
+            return s;
+        }
+
+        // 01 双卡片
+        function dualHTML(b, term) {
+            const all = b.cards.map(function (c) { return c.title + ' ' + c.ps.join(' '); }).join(' ') + ' ' + (b.foot || '');
+            if (term && !cgMatch(all, term)) return null;
+            let s = '<div class="cg-dual">';
+            b.cards.forEach(function (c) {
+                s += `<div class="cg-dual-card"><div class="cg-dual-title ${c.cls}"><span>${c.icon}</span>${cgEscape(c.title)}</div>`;
+                c.ps.forEach(function (p) { s += `<p>${p}</p>`; });
+                s += '</div>';
+            });
+            s += '</div>';
+            if (b.foot) s += `<div class="cg-dual-foot">${cgEscape(b.foot)}</div>`;
+            return s;
+        }
+
+        // 图片尺度框
+        function buildImgCol(c, type, term) {
+            if (!c) return null;
+            let chips = (c.chips || []).slice();
+            const textMatch = cgMatch(c.text, term);
+            if (term) {
+                if (!textMatch) chips = chips.filter(function (x) { return cgMatch(x, term); });
+                if (!textMatch && !chips.length) return null;
+            }
+            let s = `<div class="cg-img-col ${type}"><div class="cg-img-col-title">${cgEscape(c.title)}</div><p>${cgEscape(c.text)}</p>`;
+            if (chips.length) {
+                s += '<div class="cg-chips">' + chips.map(function (x) {
+                    return `<span class="cg-chip ${type}">${cgEscape(x)}</span>`;
+                }).join('') + '</div>';
+            }
+            s += '</div>';
+            return s;
+        }
+        function imagesHTML(b, term) {
+            const okCol = buildImgCol(b.ok, 'ok', term);
+            const noCol = buildImgCol(b.no, 'no', term);
+            const footMatch = b.foot ? cgMatch(b.foot, term) : false;
+            if (term && !okCol && !noCol && !footMatch) return null;
+            let s = `<div class="cg-img"><div class="cg-img-title"><i class="fa fa-camera"></i>图片尺度</div><div class="cg-img-grid">`;
+            if (okCol) s += okCol;
+            if (noCol) s += noCol;
+            s += '</div>';
+            if (b.foot && (!term || footMatch)) s += `<div class="cg-img-foot">${cgEscape(b.foot)}</div>`;
+            s += '</div>';
+            return s;
+        }
+
+        // 国家/地区
+        function countriesHTML(b, term) {
+            const introMatch = cgMatch(b.intro, term);
+            let cs = b.countries;
+            if (term) cs = cs.filter(function (x) { return cgMatch(x, term); });
+            if (term && !introMatch && !cs.length) return null;
+            let s = `<div class="cg-countries-intro">${cgEscape(b.intro)}</div><div class="cg-countries">`;
+            s += cs.map(function (x) { return `<span class="cg-country">${cgEscape(x)}</span>`; }).join('');
+            s += '</div>';
+            return s;
+        }
+
+        function blockHTML(b, term) {
+            if (b.t === 'words') return wordsHTML(b, term);
+            if (b.t === 'note') return noteHTML(b, term);
+            if (b.t === 'dual') return dualHTML(b, term);
+            if (b.t === 'images') return imagesHTML(b, term);
+            if (b.t === 'countries') return countriesHTML(b, term);
+            return null;
+        }
+
+        function sectionHTML(sec, term) {
+            let body = '', visible = false;
+            sec.blocks.forEach(function (b) {
+                const r = blockHTML(b, term);
+                if (r) { body += r; visible = true; }
+            });
+            const titleMatch = cgMatch(sec.title + ' ' + sec.sub, term);
+            if (term && !visible && !titleMatch) return null;
+            if (term && titleMatch && !visible) {
+                body = sec.blocks.map(function (b) { return blockHTML(b, null); }).join('');
+            }
+            return `<div class="cg-card cg-section" id="cg-sec-${sec.no}"><div class="cg-sec-head"><span class="cg-sec-num">${sec.no}</span><div><div class="cg-sec-title">${cgEscape(sec.title)}</div><div class="cg-sec-sub">${cgEscape(sec.sub)}</div></div></div><div class="cg-sec-body">${body}</div></div>`;
+        }
+
+        function finalHTML(fin, term) {
+            const all = fin.title + ' ' + fin.text + ' ' + fin.sign + ' ' + fin.src;
+            if (term && !cgMatch(all, term)) return '';
+            return `<div class="cg-card cg-final"><div class="cg-final-title">${cgEscape(fin.title)}</div><p>${cgEscape(fin.text)}</p><div class="cg-final-sign">${cgEscape(fin.sign)}</div><div class="cg-src">${cgEscape(fin.src)}</div></div>`;
+        }
+
+        function buildCgQuickNav(sections) {
+            const qn = document.getElementById('quick-nav');
+            if (!qn) return;
+            const labels = { '01': '定义', '02': '抗衰祛皱', '03': '美白祛斑', '04': '祛痘毛孔', '05': '防晒', '06': '美黑', '07': '特殊站点', '08': '其他词' };
+            sections.forEach(function (sec) {
+                const b = document.createElement('button');
+                b.className = 'capsule-btn';
+                b.textContent = sec.no + ' ' + labels[sec.no];
+                b.addEventListener('click', function () {
+                    const t = document.getElementById('cg-sec-' + sec.no);
+                    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+                qn.appendChild(b);
+            });
+            appendBackToTopCapsule();
+        }
+
+        function renderComplianceGuide(term) {
+            ingredientsContainer.innerHTML = '';
+            ingredientsContainer.className = 'flex flex-col';
+            const qn = document.getElementById('quick-nav');
+            if (qn) qn.innerHTML = '';
+
+            const g = complianceGuide;
+            let bodyHTMLstr = '', secCount = 0;
+            g.sections.forEach(function (sec) {
+                const r = sectionHTML(sec, term);
+                if (r) { bodyHTMLstr += r; secCount++; }
+            });
+            const fHTML = finalHTML(g.final, term);
+
+            const heroText = [g.hero.eyebrow, g.hero.title, g.hero.titleSub, g.hero.intro,
+            g.hero.legend.map(function (l) { return l.label; }).join(' ')].join(' ');
+            const finalText = g.final.title + ' ' + g.final.text + ' ' + g.final.sign + ' ' + g.final.src;
+            const anyMatch = secCount > 0 || cgMatch(heroText, term) || cgMatch(finalText, term);
+
+            if (term && !anyMatch) {
+                ingredientsContainer.innerHTML = '<div class="cg"><div class="cg-card cg-empty"><i class="fa fa-search"></i><p>未找到匹配的违规词 / 表述，请尝试其他关键词</p></div></div>';
+                return;
+            }
+
+            let html = '<div class="cg">' + heroHTML(g.hero) + bodyHTMLstr + fHTML + '</div>';
+            ingredientsContainer.innerHTML = html;
+            if (term) cgHighlightDOM(ingredientsContainer, term);
+            if (!term) buildCgQuickNav(g.sections);
         }
 
         // 渲染游戏列表
@@ -3911,13 +4050,9 @@
 
         // 筛选成分
         function filterIngredients() {
-            // 违规词参考分类保持不变
+            // 违规词参考：渲染涉药违规自查指南
             if (currentCategory === '违规词参考') {
-                let filteredData = prohibitedWordsDetailed;
-                if (currentSearchTerm) {
-                    filteredData = filterProhibitedWords(prohibitedWordsDetailed, currentSearchTerm);
-                }
-                renderProhibitedWords(filteredData);
+                renderComplianceGuide(currentSearchTerm || '');
                 return;
             }
             
