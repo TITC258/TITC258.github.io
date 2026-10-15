@@ -1,0 +1,783 @@
+{
+  "hero": {
+    "eyebrow": "COMPLIANCE REMINDER · 商家合规提醒",
+    "title": "涉药违规 自查指南",
+    "titleSub": "面部护肤 & 防晒美黑",
+    "intro": "化妆品仅用于清洁、美容等基础功能，<u>禁止宣称医疗功效</u>。标题、详情页若出现医疗化表述即属<u>文字类违规</u>；使用夸张对比图、生理特征图等暗示性宣传同样违规。",
+    "legend": [
+      {
+        "ic": "fa-check",
+        "cls": "ok",
+        "label": "可用表述"
+      },
+      {
+        "ic": "fa-times",
+        "cls": "ban",
+        "label": "违规表述"
+      },
+      {
+        "ic": "fa-exclamation",
+        "cls": "warn",
+        "label": "特别提示"
+      },
+      {
+        "ic": "fa-camera",
+        "cls": "img",
+        "label": "图片尺度红线"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "no": "01",
+      "title": "先说清：化妆品 vs 药品",
+      "sub": "判断商品是否涉药的第一标准",
+      "blocks": [
+        {
+          "t": "dual",
+          "cards": [
+            {
+              "icon": "🌸",
+              "cls": "cos",
+              "title": "化妆品",
+              "ps": [
+                "用于清洁、美化、提升吸引力或<b>改变外观</b>的物品（或改变外观的组成部分）。",
+                "如：护肤霜、香水、口红、彩妆、洗发水、染发剂、除臭剂。"
+              ]
+            },
+            {
+              "icon": "💊",
+              "cls": "drug",
+              "title": "药品",
+              "ps": [
+                "用于<b>诊断、治愈、缓解、治疗或预防疾病</b>，或影响人体结构/功能的物品。",
+                "疾病包括任何伤害、病痛或不利状况，无论是身体还是精神。"
+              ]
+            }
+          ],
+          "foot": "高频违规：宣称治疗功效（如抗菌/抗炎、治疗脱发、促进胶原蛋白生成等）、使用医疗术语；使用夸张对比图、生理特征图等暗示性宣传也属于违规情形。"
+        }
+      ]
+    },
+    {
+      "no": "02",
+      "title": "抗衰 · 祛皱 · 修复",
+      "sub": "高频违规重灾区",
+      "blocks": [
+        {
+          "t": "words",
+          "tone": "ok",
+          "head": "✅ 可用描述（全站点）",
+          "tag": "合规",
+          "items": [
+            {
+              "zh": "抗衰老护肤",
+              "en": "Anti-aging skincare；Age-defying skincare"
+            },
+            {
+              "zh": "抗皱护肤",
+              "en": "Anti-wrinkles skincare"
+            },
+            {
+              "zh": "舒缓皮肤",
+              "en": "Sooth skin"
+            },
+            {
+              "zh": "保湿、舒缓皮肤屏障",
+              "en": "Moisturizes / soothes the skin barrier"
+            },
+            {
+              "zh": "保湿、润滑",
+              "en": "Hydrates / Lubricates / Moisturizes"
+            },
+            {
+              "zh": "紧致 / 调理 / 抚平 / 软化肌肤",
+              "en": "Firms / Tightens / Tones / Conditions / Smoothes / Softens skin"
+            },
+            {
+              "zh": "补充 / 保护皮肤的水分屏障",
+              "en": "Replenish / Protect the skin's moisture barrier"
+            },
+            {
+              "zh": "皱纹看起来减少",
+              "en": "Wrinkles appear / look reduced"
+            },
+            {
+              "zh": "减少细纹、皱纹、鱼尾纹、笑纹、皱眉纹等的外观",
+              "en": "Reduces the appearance of fine lines, wrinkles, crow's feet, smile lines, frown lines, etc."
+            },
+            {
+              "zh": "滋润肌肤，使皱纹不那么明显",
+              "en": "Moisturizes skin to make wrinkles less noticeable"
+            },
+            {
+              "zh": "使肌肤看起来更光滑、更紧致",
+              "en": "Make skin look smoother and firmer"
+            },
+            {
+              "zh": "让肌肤看起来更年轻",
+              "en": "make skin younger-looking"
+            },
+            {
+              "zh": "让肌肤看起来健康、光滑，散发年轻光泽",
+              "en": "Leave skin looking healthy, smooth, and with a youthful glow"
+            },
+            {
+              "zh": "减少衰老迹象",
+              "en": "Diminishes / Reduces the look or the signs of aging"
+            },
+            {
+              "zh": "看起来焕然一新",
+              "en": "Looks visibly rejuvenated"
+            },
+            {
+              "zh": "剃须 / 脱毛后冷却 / 舒缓皮肤",
+              "en": "Cools / Soothes skin after shaving / epilation"
+            }
+          ]
+        },
+        {
+          "t": "words",
+          "tone": "ban",
+          "head": "❌ 不可用描述（全站点）",
+          "tag": "违规",
+          "items": [
+            {
+              "zh": "祛皱",
+              "en": "Wrinkle removal"
+            },
+            {
+              "zh": "焕肤",
+              "en": "Rejuvenate"
+            },
+            {
+              "zh": "去除 / 治疗细纹、皱纹、鱼尾纹、笑纹、皱眉纹等",
+              "en": "Reduce fine line; Removes/treats fine lines, wrinkles, crow's feet, smile lines, frown lines, etc."
+            },
+            {
+              "zh": "帮助产生 / 刺激 / 增加胶原蛋白、弹性蛋白、成纤维细胞等",
+              "en": "Aids in the production / stimulates / increases collagen, elastin, fibroblasts, etc."
+            },
+            {
+              "zh": "肉毒杆菌 / 填充剂的替代品",
+              "en": "Alternative to Botox / filler"
+            },
+            {
+              "zh": "增加细胞更新、细胞再生、愈合",
+              "en": "Increases cell turnover, cell regeneration, healing"
+            },
+            {
+              "zh": "影响 / 渗透表皮 / 真皮（角质层以外的任何皮肤层）",
+              "en": "Affects / penetrates the epidermis / dermis (any layer of skin besides the stratum corneum)"
+            },
+            {
+              "zh": "增加胶原蛋白和弹性蛋白的产生",
+              "en": "Increases production of collagen and elastin"
+            },
+            {
+              "zh": "再生 / 恢复细胞",
+              "en": "Regenerates / Revives cells"
+            },
+            {
+              "zh": "增强基因活性",
+              "en": "Boosts activity of gene"
+            },
+            {
+              "zh": "防止皮肤老化",
+              "en": "Prevent aging of the skin"
+            },
+            {
+              "zh": "再生恢复细胞、增强基因活性、调回生物钟",
+              "en": ""
+            },
+            {
+              "zh": "防止面部肌肉收缩",
+              "en": ""
+            },
+            {
+              "zh": "防止光老化和 / 或相关损伤",
+              "en": "photoaging"
+            },
+            {
+              "zh": "促进皮肤愈合",
+              "en": ""
+            },
+            {
+              "zh": "通过离子透入和类似机制，渗透至较深的真皮层",
+              "en": ""
+            },
+            {
+              "zh": "生理性改变因微弱扩张或毛细血管缺陷而变红的皮肤外观",
+              "en": ""
+            },
+            {
+              "zh": "抗敏、防敏、脱敏",
+              "en": ""
+            },
+            {
+              "zh": "治愈 / 修复皮肤",
+              "en": "Healing the skin"
+            }
+          ]
+        },
+        {
+          "t": "note",
+          "tone": "warn",
+          "head": "⚠️ 特别注意",
+          "tag": "注意",
+          "items": [
+            "含肽（peptide）的化妆品，不能描述抗衰老，因此肽和 Anti-aging / Anti-aging skincare / Age-defying 不可以同时出现在商品描述上。"
+          ]
+        },
+        {
+          "t": "images",
+          "ok": {
+            "title": "✅ 可接受",
+            "text": "有皱纹的中老年模特 · 轻微箭头、线条强调功效",
+            "imgs": [
+              {
+                "src": "图片/高清/s02_ok_1.png",
+                "cap": "有皱纹中老年模特"
+              },
+              {
+                "src": "图片/高清/s02_ok_2.png",
+                "cap": "自然皱纹模特"
+              },
+              {
+                "src": "图片/高清/s02_ok_3.png",
+                "cap": "轻微线条强调"
+              },
+              {
+                "src": "图片/高清/s02_ok_4.png",
+                "cap": "轻微箭头强调"
+              }
+            ]
+          },
+          "no": {
+            "title": "⚠️ 不可以",
+            "text": "对比图 · 夸张皱纹 · 暗示图 · 在皱纹上使用箭头或圆圈暗示功效 · 大量箭头 · 发光特效",
+            "imgs": [
+              {
+                "src": "图片/高清/s02_no_1.png",
+                "cap": "发光网格"
+              },
+              {
+                "src": "图片/高清/s02_no_2.png",
+                "cap": "大量箭头暗示"
+              },
+              {
+                "src": "图片/高清/s02_no_3.png",
+                "cap": "圆圈暗示指向皱纹"
+              },
+              {
+                "src": "图片/高清/s02_no_4.png",
+                "cap": "对比图"
+              },
+              {
+                "src": "图片/高清/s02_no_5.png",
+                "cap": "圆圈暗示圈注皱纹"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "no": "03",
+      "title": "美白 · 祛斑",
+      "sub": "注意法国、摩纳哥特殊管控",
+      "blocks": [
+        {
+          "t": "words",
+          "tone": "ok",
+          "head": "✅ 可用描述（全站点，除法国、摩纳哥）",
+          "tag": "合规",
+          "items": [
+            {
+              "zh": "提亮肤色",
+              "en": "Brighten skin"
+            },
+            {
+              "zh": "提升光泽",
+              "en": "Boost radiance"
+            },
+            {
+              "zh": "打造更均匀的肤色",
+              "en": "Create a more even-looking skin tone"
+            },
+            {
+              "zh": "使皮肤看起来更浅、更亮或更容光焕发",
+              "en": "Make the skin appear lighter, brighter, or more radiant"
+            },
+            {
+              "zh": "减少黑眼圈、瘀伤、青斑、黑斑、老年斑、变色的外观",
+              "en": "Reduces the look of dark circles, bruises or blue spots, dark spots, age spot, discoloration"
+            },
+            {
+              "zh": "",
+              "en": "Radiance / Luminous / Glow / Illuminating"
+            }
+          ]
+        },
+        {
+          "t": "words",
+          "tone": "ban",
+          "head": "❌ 不可用描述（全站点）",
+          "tag": "违规",
+          "items": [
+            {
+              "zh": "皮肤脱色 / 褪色",
+              "en": "Skin de-pigmentation / fading pigment"
+            },
+            {
+              "zh": "皮肤漂白",
+              "en": "Skin bleaching"
+            },
+            {
+              "zh": "增加 / 减少 / 抑制皮肤中黑色素 / 色素的产生",
+              "en": "Increase / decrease / Inhibit the production of melanin (pigment) in the skin"
+            },
+            {
+              "zh": "生理性地降低瘀伤、蓝斑等变色的可见度",
+              "en": ""
+            },
+            {
+              "zh": "去除受阳光损伤的癌前细胞",
+              "en": "Strips off sun-damaged precancerous cells"
+            },
+            {
+              "zh": "化学纹身去除剂（用设备 / 笔将物质注射到表皮下，诱导炎症反应以从真皮提取墨水）",
+              "en": "Chemical tattoo removal injected under the epidermis"
+            },
+            {
+              "zh": "色素沉着疾病，如黄褐斑、雀斑",
+              "en": ""
+            },
+            {
+              "zh": "防止出现新的斑点",
+              "en": "Prevents new spots from appearing"
+            },
+            {
+              "zh": "防止老年斑的发生",
+              "en": "Prevents the onset / emergence of age spot"
+            },
+            {
+              "zh": "治疗炎症后色素沉着过度、晒伤、变色、不需要的黑色素",
+              "en": "Treats post-inflammatory hyperpigmentation, sun damage, discoloration, unwanted melanin"
+            },
+            {
+              "zh": "淡化 / 消除黑痕、变色",
+              "en": "Fades / eliminates dark marks, discoloration"
+            },
+            {
+              "zh": "生理性地降低黑眼圈的可见度",
+              "en": ""
+            },
+            {
+              "zh": "",
+              "en": "Dark spot correct / Dark spot Cream / Dark spot Serum"
+            }
+          ]
+        },
+        {
+          "t": "note",
+          "tone": "warn",
+          "head": "⚠️ 不可用描述（法国、摩纳哥）",
+          "tag": "附加管控",
+          "items": [
+            "bright / brighten / brightening / brighter 单独出现时不管控；但与以下任一高相关美白成分同时出现时，管控下法国、摩纳哥站点：Hydroquinone（氢醌）、Kojic Acid（曲酸）、Arbutin（熊果苷）、4-Butylresorcinol、Phenylethyl Resorcinol、Tranexamic Acid（传明酸）、Cysteamine、Undecylenoyl Phenylalanine、Hexylresorcinol、Glabridin（光甘草定）。",
+            "时效性美白表达：宣传“短时间内快速变白 / 提亮”可能构成夸大、虚假宣传，需整改。表述如 instant / seconds / minutes / days（7 days、5 days、3 days、24 hours）等，与 white / shining / brighten 等组合突出短期效果。",
+            "其他高风险词：fading、freckles、melasma、whiten、whitening、bleaching、lightening、pigmentation、dark spot。"
+          ]
+        },
+        {
+          "t": "images",
+          "ok": {
+            "title": "✅ 可接受",
+            "text": "亮白皮肤 · 轻微斑点模特图",
+            "imgs": [
+              {
+                "src": "图片/高清/s03_ok_1.png",
+                "cap": "亮白皮肤"
+              },
+              {
+                "src": "图片/高清/s03_ok_2.png",
+                "cap": "均匀肤色"
+              },
+              {
+                "src": "图片/高清/s03_ok_3.png",
+                "cap": "轻微斑点"
+              },
+              {
+                "src": "图片/高清/s03_ok_4.png",
+                "cap": "亮白·轻微斑点模特图（多图拼接）"
+              }
+            ]
+          },
+          "no": {
+            "title": "⚠️ 不可以",
+            "text": "对比图 · 夸张暗沉图 · 密集斑点 · 暗示图",
+            "imgs": [
+              {
+                "src": "图片/高清/s03_no_1.png",
+                "cap": "密集斑点"
+              },
+              {
+                "src": "图片/高清/s03_no_2.png",
+                "cap": "夸张暗沉"
+              },
+              {
+                "src": "图片/高清/s03_no_3.png",
+                "cap": "对比图"
+              }
+            ]
+          },
+          "foot": "若类目属于 BB / CC / DD / 素颜霜，且商品附带一次性可洗去的即时美白遮瑕效果，可以使用对比图。"
+        }
+      ]
+    },
+    {
+      "no": "04",
+      "title": "祛痘 · 去角质 · 黑头 · 毛孔",
+      "sub": "出现黑头 / 红肿痘痘极易触发恶心限投",
+      "blocks": [
+        {
+          "t": "words",
+          "tone": "ok",
+          "head": "✅ 可用描述（全站点）",
+          "tag": "合规",
+          "items": [
+            {
+              "zh": "遮盖 / 隐藏痤疮",
+              "en": "Covers / Conceals acne"
+            },
+            {
+              "zh": "改善痤疮疤痕的外观",
+              "en": "Improve the look of acne scars"
+            },
+            {
+              "zh": "清洁皮肤",
+              "en": "Cleans / Cleanses skin"
+            },
+            {
+              "zh": "明确说明通过物理原因去角质、去死皮",
+              "en": "Exfoliation of dead skin"
+            },
+            {
+              "zh": "去除堵塞的皮脂管（“毛孔 pores”）、堆积皮脂和皮屑，以清洁 / 保护 / 保持皮肤良好状态（只影响原发性粉刺外观，不能预防或治疗痤疮）",
+              "en": "Removes clogged sebum duct, excess sebum and skin debris"
+            },
+            {
+              "zh": "隐形、缩小毛孔",
+              "en": "Invisible pores / Minimize pore"
+            }
+          ]
+        },
+        {
+          "t": "words",
+          "tone": "ban",
+          "head": "❌ 不可用描述（全站点）",
+          "tag": "违规",
+          "items": [
+            {
+              "zh": "化学去角质",
+              "en": "Peel"
+            },
+            {
+              "zh": "未明确说明通过物理原因的去角质、去死皮",
+              "en": "Exfoliation of dead skin"
+            },
+            {
+              "zh": "",
+              "en": "Anti-acne"
+            },
+            {
+              "zh": "",
+              "en": "Prevent acne"
+            },
+            {
+              "zh": "",
+              "en": "Blackheads remover"
+            },
+            {
+              "zh": "",
+              "en": "Reduce blackheads"
+            },
+            {
+              "zh": "",
+              "en": "Tag / Wart patch"
+            },
+            {
+              "zh": "",
+              "en": "Clears / Prevents / Stops / Fights acne"
+            },
+            {
+              "zh": "抗炎、抑菌作用",
+              "en": "Anti-inflammatory, antibacterial effects"
+            },
+            {
+              "zh": "调节皮脂分泌",
+              "en": "Regulating sebum secretion"
+            },
+            {
+              "zh": "防止痘疤",
+              "en": "Preventing acne scars"
+            }
+          ]
+        },
+        {
+          "t": "images",
+          "vertical": true,
+          "intro": "图片尺度：如图片出现黑头、红肿痘痘、密集角质、密集毛孔，都会触发恶心限投。",
+          "no": {
+            "title": "⚠️ 恶心限投示例图",
+            "imgs": [
+              {
+                "src": "图片/高清/s04_no_1.png",
+                "cap": "红肿脓包痘痘"
+              },
+              {
+                "src": "图片/高清/s04_no_2.png",
+                "cap": "黑头"
+              },
+              {
+                "src": "图片/高清/s04_no_3.png",
+                "cap": "密集毛孔和角质"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "no": "05",
+      "title": "防晒",
+      "sub": "美加澳新站点禁售管控",
+      "blocks": [
+        {
+          "t": "words",
+          "tone": "ban",
+          "head": "❌ 全站点不可用",
+          "tag": "违规",
+          "items": [
+            {
+              "zh": "",
+              "en": "sunburn"
+            },
+            {
+              "zh": "",
+              "en": "photoaging"
+            }
+          ]
+        },
+        {
+          "t": "words",
+          "tone": "ban",
+          "head": "⛔ 美国、加拿大、澳大利亚、新西兰防晒禁售",
+          "tag": "禁售",
+          "items": [
+            {
+              "zh": "上新时属性-功效必选“防晒”，会自动禁售美加澳新 4 站点",
+              "en": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "no": "06",
+      "title": "美黑",
+      "sub": "免晒美黑可用，强效 / 加速美黑违规",
+      "blocks": [
+        {
+          "t": "words",
+          "tone": "ok",
+          "head": "✅ 可用描述（全站点）",
+          "tag": "合规",
+          "items": [
+            {
+              "zh": "免晒美黑",
+              "en": "sunless tanning"
+            }
+          ]
+        },
+        {
+          "t": "words",
+          "tone": "ban",
+          "head": "❌ 不可用描述（全站点）",
+          "tag": "违规",
+          "items": [
+            {
+              "zh": "强效美黑",
+              "en": "Intense tanning"
+            },
+            {
+              "zh": "加速美黑",
+              "en": "Accelerate tanning"
+            },
+            {
+              "zh": "热晒黑产品",
+              "en": "Hot tanning products"
+            },
+            {
+              "zh": "声称可以在日光浴室中增强晒黑的产品",
+              "en": ""
+            },
+            {
+              "zh": "含有通过血管舒张作用的物质（例如苄基和烟酸甲酯）的产品",
+              "en": ""
+            }
+          ]
+        },
+        {
+          "t": "images",
+          "ok": {
+            "title": "✅ 可使用",
+            "text": "可使用对比图展示美黑效果",
+            "imgs": [
+              {
+                "src": "图片/高清/s06_ok_1.png",
+                "cap": "BEFORE / AFTER 美黑效果对比",
+                "wide": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "no": "07",
+      "title": "部分站点特殊可用",
+      "sub": "允许使用修复、抗衰、祛痘、美白等更强功效描述",
+      "blocks": [
+        {
+          "t": "countries",
+          "intro": "部分站点可用修复、抗衰、祛痘、美白等描述，站点明细：",
+          "countries": [
+            "尼日利亚",
+            "阿尔及利亚",
+            "摩洛哥",
+            "毛里求斯",
+            "哥斯达黎加",
+            "洪都拉斯",
+            "多米尼加",
+            "哥伦比亚",
+            "秘鲁",
+            "厄瓜多尔",
+            "乌拉圭",
+            "特立尼达和多巴哥",
+            "阿塞拜疆",
+            "格鲁吉亚",
+            "亚美尼亚",
+            "安道尔",
+            "巴基斯坦",
+            "斯里兰卡",
+            "蒙古",
+            "文莱",
+            "哈萨克斯坦",
+            "乌兹别克斯坦",
+            "吉尔吉斯斯坦",
+            "卡塔尔",
+            "科威特",
+            "阿曼",
+            "约旦",
+            "巴林"
+          ]
+        },
+        {
+          "t": "words",
+          "tone": "ok",
+          "head": "✅ 仅以上站点可用描述",
+          "tag": "合规",
+          "items": [
+            {
+              "zh": "抗衰",
+              "en": "Anti-aging"
+            },
+            {
+              "zh": "抗皱",
+              "en": "Anti-wrinkle"
+            },
+            {
+              "zh": "治愈皮肤",
+              "en": "Healing the skin"
+            },
+            {
+              "zh": "修复",
+              "en": "repair"
+            },
+            {
+              "zh": "皮肤美白",
+              "en": "Skin lightening / whitening"
+            },
+            {
+              "zh": "消除 / 治疗老年斑、肝斑、老年性雀斑、雀斑、黄褐斑等",
+              "en": "Eliminates / Treats age spots, liver spots, senile lentigines, freckles, melasma, chloasma"
+            },
+            {
+              "zh": "祛痘、祛痤疮",
+              "en": "Anti-acne"
+            },
+            {
+              "zh": "清除 / 治愈 / 预防 / 阻止 / 治疗 / 对抗痤疮",
+              "en": "Clears / Heals / Prevents / Stops / Treats / Fights acne"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "no": "08",
+      "title": "其他涉药词",
+      "sub": "Common drug-related words",
+      "blocks": [
+        {
+          "t": "words",
+          "tone": "ban",
+          "head": "❌ 其他涉药词",
+          "tag": "违规",
+          "items": [
+            {
+              "zh": "",
+              "en": "rejuvenat / rejuvenating / rejuvenation"
+            },
+            {
+              "zh": "临床",
+              "en": "Clinical"
+            },
+            {
+              "zh": "治疗",
+              "en": "Treatment"
+            },
+            {
+              "zh": "",
+              "en": "calms the skin"
+            },
+            {
+              "zh": "",
+              "en": "fine line reduction"
+            },
+            {
+              "zh": "",
+              "en": "Fade Fine Lines"
+            },
+            {
+              "zh": "",
+              "en": "results in 2 minutes"
+            },
+            {
+              "zh": "抗菌、抗真菌、抗微生物",
+              "en": "Anti-Bacterial / Anti-Fungal / Anti-Microbial"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "final": {
+    "title": "合规提示",
+    "text": "请商家务必对照自查商品标题、详情文字与主图，避免涉药违规导致限投、恶心限投或处罚。",
+    "sign": "美容和个人护理 · 合规提醒",
+    "src": "本页依据《涉药违规 · 商家自查提醒》（美容和个人护理合规指引）整理，实际判定请以平台最新政策为准。"
+  }
+}
