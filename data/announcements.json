@@ -17,6 +17,15 @@
       "visible": true,
       "order": 2,
       "content": "<p>(睡醒)啊？又要上班了吗</p><img src=\"zhao.jpg\" alt=\"\" class=\"w-full h-auto mt-2\">"
+    },
+    {
+      "type": "info",
+      "title": "测试公告（将删除）",
+      "date": "",
+      "order": 3,
+      "visible": true,
+      "content": "<p>这是一条用于测试写入与删除的公告内容。</p>",
+      "id": 3
     }
   ]
 }
