@@ -12,11 +12,11 @@
     {
       "id": 2,
       "type": "info",
-      "title": "📢 nao",
-      "date": "2026-xx-xx",
+      "title": "📢 维护结束",
+      "date": "",
       "visible": true,
       "order": 2,
-      "content": "<p>(睡醒)啊？又要上班了吗</p><img src=\"zhao.jpg\" alt=\"\" class=\"w-full h-auto mt-2\">"
+      "content": "后台部署完毕"
     }
   ]
 }
