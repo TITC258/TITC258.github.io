@@ -14,7 +14,7 @@
       "type": "info",
       "title": "📢 维护结束",
       "date": "",
-      "visible": true,
+      "visible": false,
       "order": 2,
       "content": "后台部署完毕"
     }
