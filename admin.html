@@ -368,7 +368,7 @@ function fileApiPath(path) {
         '?ref=' + encodeURIComponent(cfg.branch || 'main');
 }
 async function getFile(path) {
-    const data = await gh('GET', fileApiPath(path));
+    const data = await gh('GET', fileApiPath(path) + '&_t=' + Date.now());
     return { sha: data.sha, content: base64ToUtf8(data.content) };
 }
 async function putFile(path, contentText, sha, message) {
