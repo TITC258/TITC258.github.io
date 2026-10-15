@@ -175,6 +175,41 @@
     .ing-item .main .t { font-size: 14.5px; font-weight: 600; }
     .ing-item .main .s { font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .ing-item .tag { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: #f1f5f9; color: #475569; flex-shrink: 0; }
+
+    /* 违规词编辑器 */
+    .vio-sec { border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; overflow: hidden; background: var(--panel); }
+    .vio-sec-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: #f8fafc; cursor: pointer; user-select: none; }
+    .vio-sec-head .no { width: 34px; height: 34px; border-radius: 9px; background: #eef2ff; color: #4f46e5; font-weight: 700;
+        display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .vio-sec-head .ti { flex: 1; min-width: 0; }
+    .vio-sec-head .ti b { font-size: 15px; display: block; }
+    .vio-sec-head .ti span { font-size: 12.5px; color: var(--muted); }
+    .vio-sec-head .chev { transition: .2s; color: var(--muted); }
+    .vio-sec.open .vio-sec-head .chev { transform: rotate(90deg); }
+    .vio-sec-body { padding: 12px 14px; border-top: 1px solid var(--line); display: none; }
+    .vio-sec.open .vio-sec-body { display: block; }
+    .vio-blk { border: 1px solid var(--line); border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+    .vio-blk .blk-kind { font-size: 12px; color: var(--muted); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .vio-blk .blk-kind .pill { font-size: 11px; padding: 1px 8px; border-radius: 999px; background: #f1f5f9; color: #334155; }
+    .vio-head-row { display: flex; gap: 8px; margin-bottom: 8px; }
+    .vio-head-row input { flex: 1; }
+    .vio-head-row input.tag { flex: 0 0 130px; }
+    .vio-item { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+    .vio-item .ord { display: flex; flex-direction: column; gap: 1px; }
+    .vio-item .ord button { border: none; background: #eef2f7; color: #475569; width: 22px; height: 14px; font-size: 9px;
+        border-radius: 4px; cursor: pointer; line-height: 1; }
+    .vio-item input, .vio-item textarea { flex: 1; padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px;
+        background: var(--panel); color: var(--ink); }
+    .vio-item textarea { resize: vertical; min-height: 32px; }
+    .vio-item .imgprev { width: 46px; height: 46px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); flex-shrink: 0; }
+    .vio-item .srcpath { flex: 0 0 180px; font-size: 11px; color: var(--muted); word-break: break-all; }
+    .vio-add { margin-top: 4px; }
+    .vio-group { border: 1px dashed var(--line); border-radius: 10px; padding: 10px; margin-bottom: 10px; }
+    .vio-group .grp-title { font-size: 13.5px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .vio-group .grp-title input { flex: 1; font-weight: 600; }
+    .vio-group .grp-text { font-size: 12.5px; color: var(--muted); margin-bottom: 8px; }
+    .vio-group .grp-text input { width: 100%; }
+    .vio-dirty { color: #b45309; font-size: 12.5px; }
 </style>
 </head>
 <body>
@@ -191,7 +226,7 @@
         <div class="side-title">内容管理</div>
         <button class="side-btn active" data-view="ann"><i class="fa fa-bullhorn"></i>公告管理<span class="badge" id="annCount">0</span></button>
         <button class="side-btn" data-view="ingredients"><i class="fa fa-flask"></i>成分卡片<span class="badge" id="ingCount">0</span></button>
-        <button class="side-btn" data-view="violation" disabled title="下一阶段开放"><i class="fa fa-shield-halved"></i>违规词页</button>
+        <button class="side-btn" data-view="violation"><i class="fa fa-shield-halved"></i>违规词页<span class="badge" id="vioCount">8</span></button>
         <div class="side-title">维护</div>
         <button class="side-btn" data-view="history"><i class="fa fa-clock-rotate-left"></i>历史与回滚</button>
         <button class="side-btn" data-view="settings"><i class="fa fa-sliders"></i>连接设置</button>
@@ -224,6 +259,19 @@
                     <select id="ingCatFilter"><option value="">全部分类</option></select>
                 </div>
                 <div id="ingList"><div class="loading"><i class="fa fa-spinner fa-spin"></i> 正在加载…</div></div>
+            </div>
+        </section>
+
+        <!-- 违规词页 -->
+        <section id="view-violation" class="hidden">
+            <div class="page-head"><h1>违规词页</h1>
+                <button class="btn primary" id="btnSaveVio"><i class="fa fa-save"></i>保存全部修改</button>
+                <button class="btn" id="btnReloadVio"><i class="fa fa-rotate"></i>重新加载</button>
+                <button class="btn ok" id="btnSnapshotVio"><i class="fa fa-bookmark"></i>创建存档点</button></div>
+            <p class="page-sub">8 个板块与框的类型、配色、布局已锁定。你可在每个框内编辑标题、文字，并对条目 / 图片 / 站点做增删与排序。</p>
+            <div class="note-bar"><i class="fa fa-lock"></i> 不能新增 / 删除板块，也不能改变框的类型；改完请点右上角「保存全部修改」。</div>
+            <div class="panel" id="vioPanel">
+                <div id="vioTree"><div class="loading"><i class="fa fa-spinner fa-spin"></i> 正在加载…</div></div>
             </div>
         </section>
 
@@ -317,6 +365,7 @@
     </div>
 </div>
 
+<input type="file" id="vioImgFile" accept="image/*" class="hidden">
 <div class="toast-wrap" id="toastWrap"></div>
 
 <!-- 成分编辑模态 -->
@@ -355,7 +404,8 @@
 const API = 'https://api.github.com';
 const PATHS = {
     announcements: 'data/announcements.json',
-    ingredients: 'data/ingredients.json'
+    ingredients: 'data/ingredients.json',
+    violation: 'data/violation.json'
 };
 
 /* ---------- 本地设置 ---------- */
@@ -372,7 +422,8 @@ const $ = (id) => document.getElementById(id);
 const els = {};
 ['cfgOwner','cfgRepo','cfgBranch','cfgToken','connPill','connText','annList','annCount',
  'historyFile','historyList','histLoaded','annModal','annBody','imgFile',
- 'ingList','ingCount','ingModal','ingSearch','ingCatFilter'].forEach(k => els[k] = $(k));
+ 'ingList','ingCount','ingModal','ingSearch','ingCatFilter',
+ 'vioTree','vioImgFile'].forEach(k => els[k] = $(k));
 
 /* ---------- 提示 ---------- */
 function toast(msg, kind) {
@@ -498,11 +549,12 @@ document.querySelectorAll('.side-btn').forEach(btn => {
         document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const v = btn.dataset.view;
-        ['ann','ingredients','history','settings'].forEach(name => {
+        ['ann','ingredients','violation','history','settings'].forEach(name => {
             $('view-' + name).classList.toggle('hidden', name !== v);
         });
         if (v === 'history') initHistoryView();
         if (v === 'ingredients' && !ingLoaded) loadIngredients();
+        if (v === 'violation' && !vioLoaded) loadViolationAdmin();
     });
 });
 
@@ -889,6 +941,313 @@ $('btnSnapshotIng').addEventListener('click', async () => {
 });
 els.ingSearch.addEventListener('input', () => { if (ingLoaded) renderIngList(); });
 els.ingCatFilter.addEventListener('change', () => { if (ingLoaded) renderIngList(); });
+
+/* ============================================================
+   违规词页（结构锁定，只改内容）
+   ============================================================ */
+let vioData = null, vioSha = null, vioLoaded = false, vioDirty = false;
+let vioImgTarget = null;
+
+async function loadViolationAdmin() {
+    els.vioTree.innerHTML = '<div class="loading"><i class="fa fa-spinner fa-spin"></i> 正在加载…</div>';
+    try {
+        const f = await getFileIfExists(PATHS.violation);
+        vioSha = f.sha;
+        vioData = f.content == null ? null : JSON.parse(f.content);
+        if (!vioData || !vioData.sections) throw new Error('数据缺失或结构不正确');
+        vioLoaded = true; vioDirty = false;
+        renderVioTree();
+    } catch (e) {
+        els.vioTree.innerHTML = '<div class="loading">加载失败：' + e.message + '</div>';
+    }
+}
+function markVioDirty() {
+    vioDirty = true;
+    const b = $('btnSaveVio');
+    if (b) b.classList.add('accent-warn');
+}
+
+function renderVioTree() {
+    const root = els.vioTree;
+    root.innerHTML = '';
+    vioData.sections.forEach((sec, si) => {
+        const secDiv = document.createElement('div');
+        secDiv.className = 'vio-sec' + (si === 0 ? ' open' : '');
+        secDiv.innerHTML =
+            '<div class="vio-sec-head"><span class="no"></span>' +
+            '<div class="ti"><b></b><span></span></div>' +
+            '<i class="fa fa-chevron-right chev"></i></div>' +
+            '<div class="vio-sec-body"></div>';
+        secDiv.querySelector('.no').textContent = sec.no;
+        secDiv.querySelector('.ti b').textContent = sec.title;
+        secDiv.querySelector('.ti span').textContent = sec.sub || '';
+        secDiv.querySelector('.vio-sec-head').addEventListener('click', () => secDiv.classList.toggle('open'));
+        const body = secDiv.querySelector('.vio-sec-body');
+        sec.blocks.forEach((blk, bi) => body.appendChild(renderVioBlock(sec, si, blk, bi)));
+        root.appendChild(secDiv);
+    });
+}
+
+function refreshVioBlock(si, bi) {
+    const old = document.querySelector('[data-vb="' + si + '-' + bi + '"]');
+    if (!old) return;
+    const sec = vioData.sections[si];
+    old.parentNode.replaceChild(renderVioBlock(sec, si, sec.blocks[bi], bi), old);
+}
+
+/* 小工具：绑定输入 / 上下移动 / 删除 */
+function bInput(value, onChange) {
+    const i = document.createElement('input');
+    i.type = 'text'; i.value = value == null ? '' : value;
+    i.addEventListener('input', () => { onChange(i.value); markVioDirty(); });
+    return i;
+}
+function bText(value, onChange) {
+    const t = document.createElement('textarea');
+    t.rows = 2; t.value = value == null ? '' : value;
+    t.addEventListener('input', () => { onChange(t.value); markVioDirty(); });
+    return t;
+}
+function ordBtns(arr, idx, onMut) {
+    const c = document.createElement('span');
+    c.className = 'ord';
+    const up = document.createElement('button'); up.title = '上移'; up.innerHTML = '<i class="fa fa-chevron-up"></i>';
+    const dn = document.createElement('button'); dn.title = '下移'; dn.innerHTML = '<i class="fa fa-chevron-down"></i>';
+    up.addEventListener('click', () => {
+        if (idx <= 0) return;
+        [arr[idx - 1], arr[idx]] = [arr[idx], arr[idx - 1]];
+        onMut();
+    });
+    dn.addEventListener('click', () => {
+        if (idx >= arr.length - 1) return;
+        [arr[idx + 1], arr[idx]] = [arr[idx], arr[idx + 1]];
+        onMut();
+    });
+    c.append(up, dn);
+    return c;
+}
+function xBtn(onClick, title) {
+    const b = document.createElement('button');
+    b.className = 'btn sm danger'; b.title = title || '删除';
+    b.innerHTML = '<i class="fa fa-trash"></i>';
+    b.addEventListener('click', onClick);
+    return b;
+}
+function addBtn(label, onClick) {
+    const b = document.createElement('button');
+    b.className = 'btn sm vio-add'; b.innerHTML = '<i class="fa fa-plus"></i> ' + label;
+    b.addEventListener('click', onClick);
+    return b;
+}
+
+function renderVioBlock(sec, si, blk, bi) {
+    const wrap = document.createElement('div');
+    wrap.className = 'vio-blk';
+    wrap.dataset.vb = si + '-' + bi;
+    const kind = document.createElement('div');
+    kind.className = 'blk-kind';
+    kind.innerHTML = '<i class="fa fa-box"></i><span>框 ' + (bi + 1) + '</span><span class="pill">' + blk.t + '</span>';
+    wrap.appendChild(kind);
+
+    if (blk.t === 'words') {
+        wrap.appendChild(headTagRow(blk));
+        blk.items.forEach((it, ii) => {
+            const row = document.createElement('div');
+            row.className = 'vio-item';
+            row.appendChild(ordBtns(blk.items, ii, () => { markVioDirty(); refreshVioBlock(si, bi); }));
+            row.appendChild(bInput(it.zh, v => { it.zh = v; }));
+            row.appendChild(bInput(it.en, v => { it.en = v; }));
+            row.appendChild(xBtn(() => { blk.items.splice(ii, 1); markVioDirty(); refreshVioBlock(si, bi); }, '删除条目'));
+            wrap.appendChild(row);
+        });
+        wrap.appendChild(addBtn('新增条目', () => { blk.items.push({ zh: '', en: '' }); markVioDirty(); refreshVioBlock(si, bi); }));
+    }
+    else if (blk.t === 'note') {
+        wrap.appendChild(headTagRow(blk));
+        blk.items.forEach((txt, ii) => {
+            const row = document.createElement('div');
+            row.className = 'vio-item';
+            row.appendChild(ordBtns(blk.items, ii, () => { markVioDirty(); refreshVioBlock(si, bi); }));
+            const ta = bText(txt, v => { blk.items[ii] = v; });
+            row.appendChild(ta);
+            row.appendChild(xBtn(() => { blk.items.splice(ii, 1); markVioDirty(); refreshVioBlock(si, bi); }));
+            wrap.appendChild(row);
+        });
+        wrap.appendChild(addBtn('新增一条', () => { blk.items.push(''); markVioDirty(); refreshVioBlock(si, bi); }));
+    }
+    else if (blk.t === 'dual') {
+        blk.cards.forEach(card => {
+            const g = document.createElement('div');
+            g.className = 'vio-group';
+            const t = document.createElement('div');
+            t.className = 'grp-title';
+            t.innerHTML = '<span style="flex-shrink:0">' + card.icon + ' ' + card.title + '</span><span class="hint">（卡片标题/图标固定）</span>';
+            g.appendChild(t);
+            card.ps.forEach((p, pi) => {
+                const row = document.createElement('div');
+                row.className = 'vio-item';
+                row.appendChild(ordBtns(card.ps, pi, () => { markVioDirty(); refreshVioBlock(si, bi); }));
+                row.appendChild(bText(p, v => { card.ps[pi] = v; }));
+                row.appendChild(xBtn(() => { card.ps.splice(pi, 1); markVioDirty(); refreshVioBlock(si, bi); }));
+                g.appendChild(row);
+            });
+            g.appendChild(addBtn('新增一段', () => { card.ps.push(''); markVioDirty(); refreshVioBlock(si, bi); }));
+            wrap.appendChild(g);
+        });
+        const fl = document.createElement('label');
+        fl.className = 'fld'; fl.innerHTML = '<span>底部说明（foot）</span>';
+        fl.appendChild(bText(blk.foot || '', v => { blk.foot = v; }));
+        wrap.appendChild(fl);
+    }
+    else if (blk.t === 'countries') {
+        const intro = document.createElement('label');
+        intro.className = 'fld'; intro.innerHTML = '<span>引导文字（intro）</span>';
+        intro.appendChild(bInput(blk.intro || '', v => { blk.intro = v; }));
+        wrap.appendChild(intro);
+        blk.countries.forEach((c, ci) => {
+            const row = document.createElement('div');
+            row.className = 'vio-item';
+            row.appendChild(ordBtns(blk.countries, ci, () => { markVioDirty(); refreshVioBlock(si, bi); }));
+            row.appendChild(bInput(c, v => { blk.countries[ci] = v; }));
+            row.appendChild(xBtn(() => { blk.countries.splice(ci, 1); markVioDirty(); refreshVioBlock(si, bi); }));
+            wrap.appendChild(row);
+        });
+        wrap.appendChild(addBtn('新增站点', () => { blk.countries.push(''); markVioDirty(); refreshVioBlock(si, bi); }));
+    }
+    else if (blk.t === 'images') {
+        if (blk.intro) {
+            const intro = document.createElement('label');
+            intro.className = 'fld'; intro.innerHTML = '<span>引导文字（intro）</span>';
+            intro.appendChild(bInput(blk.intro, v => { blk.intro = v; }));
+            wrap.appendChild(intro);
+        }
+        ['ok', 'no'].forEach(gk => {
+            if (!blk[gk]) return;
+            const grp = blk[gk];
+            const box = document.createElement('div');
+            box.className = 'vio-group';
+            const t = document.createElement('div');
+            t.className = 'grp-title';
+            t.appendChild(bInput(grp.title || '', v => { grp.title = v; }));
+            box.appendChild(t);
+            if ('text' in grp) {
+                const tx = document.createElement('div');
+                tx.className = 'grp-text';
+                tx.appendChild(bInput(grp.text || '', v => { grp.text = v; }));
+                box.appendChild(tx);
+            }
+            grp.imgs.forEach((im, ii) => {
+                const row = document.createElement('div');
+                row.className = 'vio-item';
+                row.appendChild(ordBtns(grp.imgs, ii, () => { markVioDirty(); refreshVioBlock(si, bi); }));
+                const pv = document.createElement('img');
+                pv.className = 'imgprev'; pv.src = im.src;
+                pv.onerror = () => { pv.style.visibility = 'hidden'; };
+                row.appendChild(pv);
+                const cap = bInput(im.cap || '', v => { im.cap = v; });
+                cap.placeholder = '图片说明';
+                row.appendChild(cap);
+                const sp = document.createElement('span');
+                sp.className = 'srcpath'; sp.textContent = im.src;
+                row.appendChild(sp);
+                row.appendChild(xBtn(() => { grp.imgs.splice(ii, 1); markVioDirty(); refreshVioBlock(si, bi); }, '移除图片'));
+                box.appendChild(row);
+            });
+            box.appendChild(addBtn('上传并添加图片', () => {
+                vioImgTarget = { si, bi, grp };
+                els.vioImgFile.click();
+            }));
+            wrap.appendChild(box);
+        });
+        if (blk.foot) {
+            const fl = document.createElement('label');
+            fl.className = 'fld'; fl.innerHTML = '<span>底部说明（foot）</span>';
+            fl.appendChild(bText(blk.foot, v => { blk.foot = v; }));
+            wrap.appendChild(fl);
+        }
+    }
+    else {
+        const un = document.createElement('div');
+        un.className = 'loading'; un.textContent = '（该框类型未开放编辑，结构已锁定）';
+        wrap.appendChild(un);
+    }
+    return wrap;
+}
+
+function headTagRow(blk) {
+    const r = document.createElement('div');
+    r.className = 'vio-head-row';
+    r.appendChild(bInput(blk.head || '', v => { blk.head = v; }));
+    const tag = bInput(blk.tag || '', v => { blk.tag = v; });
+    tag.className = 'tag'; tag.placeholder = '小标签';
+    r.appendChild(tag);
+    return r;
+}
+
+/* 违规词图片上传：通用上传并加入对应组 */
+els.vioImgFile.addEventListener('change', async () => {
+    const file = els.vioImgFile.files[0];
+    els.vioImgFile.value = '';
+    const target = vioImgTarget;
+    if (!file || !target) return;
+    try {
+        const path = await uploadFileToRepo(file);
+        target.grp.imgs.push({ src: path, cap: file.name.replace(/\.[^.]+$/, '') });
+        markVioDirty();
+        refreshVioBlock(target.si, target.bi);
+        toast('图片已上传，记得点「保存全部修改」', 'ok');
+    } catch (e) {
+        toast('上传失败：' + e.message, 'err');
+    }
+});
+
+/* 通用：上传一个文件到仓库，返回路径 */
+async function uploadFileToRepo(file) {
+    const dataUrl = await new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(file);
+    });
+    const base64 = dataUrl.split(',')[1];
+    const ext = (file.name.split('.').pop() || 'png').toLowerCase().replace(/[^a-z0-9]/g, '') || 'png';
+    const d = new Date();
+    const stamp = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') +
+        String(d.getDate()).padStart(2, '0') + '-' + String(d.getHours()).padStart(2, '0') +
+        String(d.getMinutes()).padStart(2, '0') + String(d.getSeconds()).padStart(2, '0');
+    const base = file.name.replace(/\.[^.]+$/, '').replace(/[^\w\u4e00-\u9fa5-]+/g, '_').slice(0, 24) || 'image';
+    const path = '图片/上传/' + stamp + '-' + base + '.' + ext;
+    await gh('PUT', '/repos/' + cfg.owner + '/' + cfg.repo + '/contents/' + path, {
+        message: '上传图片：' + file.name,
+        content: base64,
+        branch: cfg.branch || 'main'
+    });
+    return path;
+}
+
+/* 保存 / 重载 / 存档 */
+$('btnSaveVio').addEventListener('click', async () => {
+    const text = JSON.stringify(vioData, null, 2);
+    const btn = $('btnSaveVio');
+    btn.disabled = true;
+    try {
+        const f = await getFileIfExists(PATHS.violation);
+        vioSha = f.sha;
+        await putFile(PATHS.violation, text, vioSha, '后台：编辑违规词页内容');
+        toast('已保存并提交，Pages 即将更新', 'ok');
+        vioDirty = false;
+        btn.classList.remove('accent-warn');
+        await loadViolationAdmin();
+    } catch (e) {
+        toast('保存失败：' + e.message, 'err');
+    } finally { btn.disabled = false; }
+});
+$('btnReloadVio').addEventListener('click', () => {
+    if (vioDirty && !confirm('有未保存的修改，确定放弃并重新加载？')) return;
+    loadViolationAdmin();
+});
+$('btnSnapshotVio').addEventListener('click', async () => {
+    try { toast('存档点已创建：' + await createSnapshotBranch(), 'ok'); }
+    catch (e) { toast('存档失败：' + e.message, 'err'); }
+});
 
 /* ============================================================
    历史与回滚
