@@ -4676,43 +4676,22 @@
         
         // ========== 公告系统 ==========
         // 公告数据 - 新增公告直接加在数组最前面，自动保留最新3条
-        var announcements = [
-            {
-                id: 1,
-                type: 'danger', // danger/warning/info
-                icon: 'fa-exclamation-triangle',
-                title: '⚠️ 肽类成分高危管控',
-                date: '2026-07-09',
-                content: '<p class="font-bold mb-2">含肽化妆品需删除药物声明宣传图文描述</p>' +
-                    '<p class="mb-2"><strong>涉药词：</strong>anti aging、anti acne、body building、muscle building、weight loss、slim、bioactive、growth factor、anti-anxiety、enhance sexual activity、sleep inducing、inflammation、inject、injection</p>' +
-                    '<p class="mb-2"><strong>影响站点：</strong>全站点（已创建待处罚，有整改时间）；澳大利亚（已处罚下架）</p>' +
-                    '<p class="mb-2"><strong>自查点：</strong>确认商品是否含肽。含肽则整改标题、轮播图、本体上的anti-aging描述；不含肽则不应处罚，有误判可反馈。</p>' +
-                    '<p class="text-xs mt-2 pt-2 border-t border-red-200">💡 注意：不含肽成分的化妆品，使用 anti aging + skincare 描述不会涉药</p>'
-                    +'<img src="xjm.gif" alt="" style="width: 50px; height: auto;" class="w-full h-auto mt-2">'
-            }
+        var announcements = [];
 
-            ,{
-                id: 2,
-                type: 'info',
-                icon: 'fa-info-circle',
-                title: '📢 nao',
-                date: '2026-xx-xx',
-                content: '<p>(睡醒)啊？又要上班了吗</p>'
-                + '<img src="zhao.jpg" alt="" class="w-full h-auto mt-2">'
+        // 从 data/announcements.json 加载公告（由后台 admin.html 维护）
+        async function loadAnnouncements() {
+            try {
+                var res = await fetch('data/announcements.json?ts=' + Date.now(), { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                var data = await res.json();
+                var items = (data && data.items) ? data.items : [];
+                announcements = items.filter(function (a) { return a.visible !== false; })
+                    .sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+            } catch (e) {
+                announcements = [];
+                console.warn('公告数据加载失败：', e);
             }
-            // 后续新增公告直接在这里加，例如：
-            // ,{
-            //     id: 2,
-            //     type: 'warning',
-            //     icon: 'fa-info-circle',
-            //     title: '📢 新公告标题',
-            //     date: '2026-xx-xx',
-            //     content: '<p>公告内容</p>'
-            // }
-        ];
-        
-        // 只保留最新3条公告
-        announcements = announcements.slice(0, 3);
+        }
         
         // 渲染公告
         function renderAnnouncements() {
@@ -4722,6 +4701,8 @@
             
             for (var i = 0; i < announcements.length; i++) {
                 var ann = announcements[i];
+                var annIcon = ann.icon || (ann.type === 'danger' ? 'fa-exclamation-triangle'
+                    : (ann.type === 'warning' ? 'fa-exclamation-circle' : 'fa-info-circle'));
                 var isFirst = i === 0;
                 
                 // 根据类型设置颜色
@@ -4753,7 +4734,7 @@
                 toggleBtn.className = 'w-full py-2.5 px-4 flex items-center justify-between transition-all hover:bg-opacity-80';
                 toggleBtn.innerHTML = 
                     '<div class="flex items-center gap-2">' +
-                        '<i class="fa ' + ann.icon + ' ' + iconColor + ' text-lg"></i>' +
+                        '<i class="fa ' + annIcon + ' ' + iconColor + ' text-lg"></i>' +
                         '<span class="text-sm font-semibold ' + textColor + '">' + ann.title + '</span>' +
                         (ann.date ? '<span class="text-xs ' + textColor + ' opacity-70 ml-2">' + ann.date + '</span>' : '') +
                     '</div>' +
@@ -4830,15 +4811,15 @@
             updateAnnouncementVisibility();
         };
         
-        // 初始化页面：默认进入“违规词参考”
-        handleCategoryFilter('违规词参考');
-        // 初始化公告系统
-        renderAnnouncements();
-        setTimeout(addPeptideBadges, 200);
-        updateAnnouncementVisibility();
-        // 初始给肽类卡片加警告标识
-        setTimeout(addPeptideBadges, 200);
-        updatePeptideWarningVisibility();
+        // 初始化页面：先加载可编辑数据，再默认进入“违规词参考”
+        (async function () {
+            await loadAnnouncements();
+            handleCategoryFilter('违规词参考');
+            renderAnnouncements();
+            updateAnnouncementVisibility();
+            updatePeptideWarningVisibility();
+            setTimeout(addPeptideBadges, 200);
+        })();
         
         // 绑定导航栏气泡按钮事件（需要等DOM加载完成）
         setTimeout(() => {
