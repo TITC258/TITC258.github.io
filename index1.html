@@ -1096,6 +1096,47 @@
             font-size: 20px; cursor: pointer; transition: background .2s ease, transform .2s ease;
         }
         .cg-lb-close:hover { background: rgba(255,255,255,.26); transform: rotate(90deg); }
+
+        /* ===== 顶部「使用前请注意」提示条（原左下角弹窗迁移至此）===== */
+        .header-tip { position: relative; display: flex; align-items: center; gap: 6px; }
+        .header-tip-pill {
+            display: flex; align-items: center; gap: 7px; border: 1px solid #fde68a;
+            background: #fffbeb; color: #b45309; font-size: 13px; font-weight: 600;
+            padding: 7px 12px; border-radius: 999px; cursor: pointer; transition: background .2s;
+            white-space: nowrap;
+        }
+        .header-tip-pill:hover { background: #fef3c7; }
+        .header-tip-pill .fa-chevron-down { font-size: 10px; transition: transform .25s; }
+        .header-tip.open .header-tip-pill .fa-chevron-down { transform: rotate(180deg); }
+        .header-tip-go {
+            border: 1px solid #fcd34d; background: #f59e0b; color: #fff; font-size: 12.5px;
+            font-weight: 700; padding: 7px 13px; border-radius: 999px; cursor: pointer;
+            white-space: nowrap; transition: filter .2s;
+        }
+        .header-tip-go:hover { filter: brightness(1.06); }
+        .header-tip-panel {
+            position: absolute; top: calc(100% + 10px); right: 0; width: 320px; z-index: 60;
+            background: #fff; border: 1px solid #fde68a; border-radius: 14px;
+            box-shadow: 0 18px 45px rgba(15,23,42,.18); padding: 14px 15px;
+            font-size: 13px; line-height: 1.7; color: #4b5563; display: none;
+        }
+        .header-tip.open .header-tip-panel { display: block; animation: cgLbFade .18s ease; }
+        .header-tip-panel .ht-title { font-weight: 700; color: #b45309; margin-bottom: 6px; }
+        body.dark .header-tip-pill { background: rgba(245,158,11,.14); border-color: rgba(245,158,11,.4); color: #fcd34d; }
+        body.dark .header-tip-panel { background: #1e2433; border-color: rgba(245,158,11,.35); color: #cbd5e1; }
+        body.dark .header-tip-panel .ht-title { color: #fcd34d; }
+
+        /* ===== 左侧栏：公告区超出时内部滚动（导航保持不动）===== */
+        @media (min-width: 1024px) {
+            .layout-aside { max-height: calc(100vh - 120px); display: flex; flex-direction: column; }
+            .layout-nav-card { flex-shrink: 0; }
+            #announcement-widget {
+                flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden;
+                scrollbar-width: thin; padding-right: 5px;
+            }
+            #announcement-widget::-webkit-scrollbar { width: 6px; }
+            #announcement-widget::-webkit-scrollbar-thumb { background: #c7c9d6; border-radius: 999px; }
+        }
     </style>
 </head>
 <body class="font-sans">
@@ -1287,8 +1328,22 @@
                 <span class="header-watermark">所有内容仅供参考，使用前请自行查证可用性</span>
             </div>
 
-            <!-- 右侧：搜索框 + 深色按钮 -->
-            <div class="flex items-center gap-2">
+            <!-- 右侧：使用前请注意 + 搜索框 + 深色按钮 -->
+            <div class="flex items-center gap-2 flex-wrap justify-center">
+                <!-- 使用前请注意（原左下角弹窗，迁移到顶部）-->
+                <div class="header-tip" id="headerTip">
+                    <button class="header-tip-pill" id="headerTipToggle" type="button">
+                        <i class="fa fa-circle-exclamation"></i>
+                        <span>违规词库使用前请注意</span>
+                        <i class="fa fa-chevron-down"></i>
+                    </button>
+                    <button class="header-tip-go" id="headerTipGo" type="button">去看看</button>
+                    <div class="header-tip-panel">
+                        <div class="ht-title">⚠️ 使用前请注意</div>
+                        <div>本页面违规词库整理自公开合规指引，实际应用时请以平台最新政策为准。</div>
+                        <div style="margin-top:6px">推荐优先参考 <strong>官方违规词库来源</strong>，获取最权威的判定标准。</div>
+                    </div>
+                </div>
                 <div id="search-container" class="relative flex items-center">
                     <input type="text" id="search-input" placeholder="搜索..." class="w-0 px-0 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 opacity-0">
                     <button id="search-button" class="text-gray-500 hover:text-primary p-2 focus:outline-none">
@@ -1306,9 +1361,9 @@
     <main class="container mx-auto px-4 py-8">
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- 左侧分类导航 -->
-            <aside class="lg:w-1/4 lg:sticky lg:top-24 lg:self-start">
+            <aside class="lg:w-1/4 lg:sticky lg:top-24 lg:self-start layout-aside">
                 <!-- 分类卡片 -->
-                <div class="bg-white rounded-xl shadow-soft p-4">
+                <div class="bg-white rounded-xl shadow-soft p-4 layout-nav-card">
                     <h2 class="text-lg font-bold text-gray-800 mb-4">功能导航</h2>
                     <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-2">
                         <span class="cg-nav-label">合规自查</span>
@@ -1323,26 +1378,9 @@
                         <button class="category-btn text-center bg-white text-neutral-dark px-3 py-2 lg:px-4 lg:py-3 rounded-lg text-sm lg:text-base w-full shadow-none border border-gray-200" data-category="网红爆款抗氧化类">网红爆款抗氧化</button>
                     </nav>
                 </div>
-                                                <!-- 公告系统组件 -->
+                <!-- 公告系统组件 -->
                 <div id="announcement-widget" class="mt-4">
                     <div id="announcement-list"></div>
-                </div>
-                <!-- 违规词提示气泡（独立卡片，初始隐藏） -->
-                <div id="prohibitedTipBubble" class="compliance-tip-bubble-nav hidden mt-4">
-                    <div class="tip-content">
-                        <div class="tip-icon">
-                            <i class="fa fa-exclamation"></i>
-                        </div>
-                        <div class="tip-text">
-                            <strong>⚠️ 使用前请注意</strong><br>
-                            本页面违规词库整理自公开合规指引，实际应用时请以平台最新政策为准。
-                            推荐优先参考 <strong>官方违规词库来源</strong>，获取最权威的判定标准。
-                        </div>
-                    </div>
-                    <div class="tip-actions">
-                        <button class="tip-btn tip-btn-ignore" id="ignoreNavTipBtn">我不管</button>
-                        <button class="tip-btn tip-btn-go" id="goToSourceNavBtn">去看看</button>
-                    </div>
                 </div>
               <!-- 右侧快速导航容器 -->
               <div id="quick-nav" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 flex flex-col gap-2"></div>
@@ -2062,7 +2100,9 @@
             '05': { short: '防晒', ext: '美加澳新管控' },
             '06': { short: '美黑', ext: '免晒美黑' },
             '07': { short: '站点', ext: '特殊可用' },
-            '08': { short: '其他', ext: '涉药词' }
+            '08': { short: '其他', ext: '涉药词' },
+            '09': { short: '胸部', ext: '乳头护理' },
+            '10': { short: '臀部', ext: '臀臀护理' }
         };
 
         let cgCapsHidden = localStorage.getItem('cgCapsHidden') === 'true';
@@ -2071,7 +2111,11 @@
             if (!cgCapsulesBox) return;
             cgCapsulesBox.innerHTML = '';
             complianceGuide.sections.forEach(function (sec, idx) {
-                const lb = cgDockLabels[sec.no];
+                // 兜底：未在 cgDockLabels 中登记的板块，用标题前两字，避免崩溃
+                const lb = cgDockLabels[sec.no] || {
+                    short: (sec.title || '').slice(0, 2),
+                    ext: sec.sub || ''
+                };
                 const b = document.createElement('button');
                 b.type = 'button';
                 b.className = 'cg-cap';
@@ -2676,14 +2720,12 @@
             }
         }
         
-        // 控制公告显示隐藏
+        // 控制公告显示：现在所有页面（含违规词页）都显示公告
         function updateAnnouncementVisibility() {
             var widget = document.getElementById('announcement-widget');
             if (!widget) return;
-            if (currentCategory === '违规词参考') {
-                widget.classList.add('hidden');
-            } else {
-                widget.classList.remove('hidden');
+            widget.classList.remove('hidden');
+            if (currentCategory !== '违规词参考') {
                 setTimeout(addPeptideBadges, 100);
             }
         }
@@ -2706,25 +2748,35 @@
             renderAnnouncements();
             updateAnnouncementVisibility();
             setTimeout(addPeptideBadges, 200);
+            // 加载完成后若 URL 带 #cg-sec-xx 锚点，则定位到对应板块（异步渲染后补齐锚点）
+            if (location.hash && location.hash.indexOf('#cg-sec-') === 0) {
+                setTimeout(function () {
+                    const t = document.getElementById(location.hash.slice(1));
+                    if (t) t.scrollIntoView({ behavior: 'auto', block: 'start' });
+                }, 350);
+            }
         })();
         
-        // 绑定导航栏气泡按钮事件（需要等DOM加载完成）
-        setTimeout(() => {
-            const ignoreBtn = document.getElementById('ignoreNavTipBtn');
-            const goBtn = document.getElementById('goToSourceNavBtn');
-            const bubble = document.getElementById('prohibitedTipBubble');
-            
-            if (ignoreBtn) {
-                ignoreBtn.addEventListener('click', function() {
-                    if (bubble) bubble.classList.add('hidden');
-                });
-            }
-            if (goBtn) {
-                goBtn.addEventListener('click', function() {
+        // 顶部「使用前请注意」提示条事件
+        (function () {
+            const tip = document.getElementById('headerTip');
+            const toggle = document.getElementById('headerTipToggle');
+            const go = document.getElementById('headerTipGo');
+            if (!tip || !toggle) return;
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                tip.classList.toggle('open');
+            });
+            if (go) {
+                go.addEventListener('click', function () {
                     window.open('https://seller.kuajingmaihuo.com/questionnaire?surveyId=19802919030', '_blank', 'noopener,noreferrer');
                 });
             }
-        }, 100);
+            // 点击面板外部收起
+            document.addEventListener('click', function (e) {
+                if (!tip.contains(e.target)) tip.classList.remove('open');
+            });
+        })();
     </script>
 
 </body></html>
