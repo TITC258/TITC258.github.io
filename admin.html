@@ -268,7 +268,7 @@
                 <button class="btn primary" id="btnSaveVio"><i class="fa fa-save"></i>保存全部修改</button>
                 <button class="btn" id="btnReloadVio"><i class="fa fa-rotate"></i>重新加载</button>
                 <button class="btn ok" id="btnSnapshotVio"><i class="fa fa-bookmark"></i>创建存档点</button></div>
-            <p class="page-sub">8 个板块与框的类型、配色、布局已锁定。你可在每个框内编辑标题、文字，并对条目 / 图片 / 站点做增删与排序。</p>
+            <p class="page-sub"><span id="vioSecCount">8</span> 个板块与框的类型、配色、布局已锁定。你可在每个框内编辑标题、文字，并对条目 / 图片 / 站点做增删与排序。</p>
             <div class="note-bar"><i class="fa fa-lock"></i> 不能新增 / 删除板块，也不能改变框的类型；改完请点右上角「保存全部修改」。</div>
             <div class="panel" id="vioPanel">
                 <div id="vioTree"><div class="loading"><i class="fa fa-spinner fa-spin"></i> 正在加载…</div></div>
@@ -969,6 +969,8 @@ function markVioDirty() {
 
 function renderVioTree() {
     const root = els.vioTree;
+    if ($('vioCount')) $('vioCount').textContent = vioData.sections.length;
+    if ($('vioSecCount')) $('vioSecCount').textContent = vioData.sections.length;
     root.innerHTML = '';
     vioData.sections.forEach((sec, si) => {
         const secDiv = document.createElement('div');
