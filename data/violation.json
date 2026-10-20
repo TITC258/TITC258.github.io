@@ -772,6 +772,327 @@
           ]
         }
       ]
+    },
+    {
+      "no": "09",
+      "title": "胸部护理",
+      "sub": "Breast & Nipple Care",
+      "blocks": [
+        {
+          "t": "words",
+          "tone": "ban",
+          "head": "❌ 禁用词 / 描述",
+          "tag": "违规",
+          "items": [
+            {
+              "zh": "10X / 20X / 30days 等严重夸张、虚假宣传",
+              "en": "10X / 20X / 30days"
+            },
+            {
+              "zh": "尺寸 / 体积增大、促进 / 激活、生理发育",
+              "en": "Enlargement / Increase size / Boost / Activate"
+            },
+            {
+              "zh": "胸部前后对比（Before → After，小胸 → 大胸）",
+              "en": "Before / After comparison"
+            },
+            {
+              "zh": "箭头、划线标注直接指向“提升”“增大”部位",
+              "en": "Arrows pointing to lift / enlarge"
+            },
+            {
+              "zh": "双手托胸、按摩胸部、挤胸",
+              "en": "Holding / massaging / squeezing breasts"
+            },
+            {
+              "zh": "明显突出乳房大小变化、强调胸部曲线",
+              "en": "Emphasizing breast size / curves"
+            },
+            {
+              "zh": "低领、深 V 服装强化胸部视觉",
+              "en": "Low-cut / deep V neckline"
+            },
+            {
+              "zh": "裸体或接近裸体的胸部特写、乳头 / 乳晕可见",
+              "en": "Nude / nipple / areola visible"
+            },
+            {
+              "zh": "性暗示",
+              "en": "Sexual suggestion"
+            },
+            {
+              "zh": "医学 / 医疗化胸部图片",
+              "en": "Medicalized breast images"
+            },
+            {
+              "zh": "桃子等水果暗示胸部、臀部",
+              "en": "Peach / fruit metaphor"
+            },
+            {
+              "zh": "刺激胶原再生、丰胸等改变生理结构",
+              "en": "Stimulate collagen / breast enhancement"
+            }
+          ]
+        },
+        {
+          "t": "images",
+          "no": {
+            "title": "⚠️ 禁用图",
+            "text": "夸张倍数 · 增大包装 · 前后对比 · 水果暗示 · 箭头标注 · 裸胸特写",
+            "imgs": [
+              {
+                "src": "图片/胸臀/bx_no_10x.png",
+                "cap": "10X 夸张虚假"
+              },
+              {
+                "src": "图片/胸臀/bx_no_enlarge.png",
+                "cap": "ENLARGING 增大包装"
+              },
+              {
+                "src": "图片/胸臀/bx_no_compare.png",
+                "cap": "前后对比 / 托胸"
+              },
+              {
+                "src": "图片/胸臀/bx_no_jar.png",
+                "cap": "对比霜（X）"
+              },
+              {
+                "src": "图片/胸臀/bx_no_peach.png",
+                "cap": "桃子暗示"
+              },
+              {
+                "src": "图片/胸臀/bx_no_multi.png",
+                "cap": "箭头 / 多图暗示"
+              }
+            ]
+          }
+        },
+        {
+          "t": "words",
+          "tone": "ok",
+          "head": "✅ 胸部护理可用描述",
+          "tag": "合规",
+          "items": [
+            {
+              "zh": "胸部紧致提拉霜，令胸部更曲线感、更紧致",
+              "en": "Firms / lifts the look of the bust; smoother, more defined look"
+            },
+            {
+              "zh": "护理胸前肌肤",
+              "en": "Daily bust care; Skin care for the bust area"
+            },
+            {
+              "zh": "改善胸部紧致度、胸部护理（抽象人体线稿）",
+              "en": "Improves the look of bust firmness"
+            },
+            {
+              "zh": "仅描述外观（不改变生理结构）",
+              "en": "the look of …"
+            },
+            {
+              "zh": "3D / 4D（d 代表立体感，不代表时间 / 倍数）",
+              "en": "3D / 4D（dimensional look）"
+            },
+            {
+              "zh": "成分：玛卡根、野生山药、古古树脂、积雪草",
+              "en": "Maca root / Wild yam / Copaiba / Centella asiatica"
+            }
+          ]
+        },
+        {
+          "t": "words",
+          "tone": "ok",
+          "head": "✅ 乳头护理可用词（Nipple Care）",
+          "tag": "合规",
+          "items": [
+            {
+              "zh": "第一优先级：乳头护理精华",
+              "en": "Nipple Care Serum"
+            },
+            {
+              "zh": "第一优先级：乳头肌肤护理精华",
+              "en": "Nipple Skin Care Serum"
+            },
+            {
+              "zh": "第一优先级：乳头提亮精华",
+              "en": "Nipple Brightening Serum"
+            },
+            {
+              "zh": "第一优先级：乳头保湿提亮精华",
+              "en": "Nipple Hydrating & Brightening Serum"
+            },
+            {
+              "zh": "第二优先级：乳头肌肤调理精华",
+              "en": "Nipple Skin Conditioning Serum"
+            },
+            {
+              "zh": "第二优先级：局部乳头护理",
+              "en": "Targeted Nipple Skin Care"
+            },
+            {
+              "zh": "第二优先级：乳头护理与保湿",
+              "en": "Nipple Care & Hydration"
+            },
+            {
+              "zh": "第二优先级：乳头肌肤提亮护理",
+              "en": "Brightening Care for Nipple Skin"
+            },
+            {
+              "zh": "不建议",
+              "en": "Nipple Pinkening Serum（不建议）"
+            }
+          ]
+        },
+        {
+          "t": "images",
+          "ok": {
+            "title": "✅ 合规图",
+            "text": "着装模特 · 产品展示 · 抽象线稿 · 卡通 · 花卉隐喻",
+            "imgs": [
+              {
+                "src": "图片/胸臀/bx_ok_polo.png",
+                "cap": "着装模特（锁骨/上胸）"
+              },
+              {
+                "src": "图片/胸臀/bx_ok_phone.png",
+                "cap": "产品 + 模特展示"
+              },
+              {
+                "src": "图片/胸臀/bx_ok_bust.png",
+                "cap": "束身抽象（BUST）"
+              },
+              {
+                "src": "图片/胸臀/bx_ok_line.png",
+                "cap": "人体线稿抽象"
+              },
+              {
+                "src": "图片/胸臀/np_ok_cartoon.png",
+                "cap": "卡通乳头"
+              },
+              {
+                "src": "图片/胸臀/np_ok_tulip.png",
+                "cap": "花苞隐喻"
+              },
+              {
+                "src": "图片/胸臀/np_ok_palette.png",
+                "cap": "配色 / 着装模特"
+              }
+            ]
+          }
+        },
+        {
+          "t": "note",
+          "tone": "warn",
+          "head": "⚠️ 包装与卖点注意",
+          "tag": "注意",
+          "items": [
+            "乳头护理卖点可写“粉嫩乳头霜”，但<b>不要做对比</b>，包装上不要出现人物。",
+            "模特轮播图不要色情；正确做法是用<b>卡通图</b>表示，人物模特穿上衣服、多穿一点。",
+            "胸部提拉霜包装不要出现人物胸部，用卡通、动漫表现胸部饱满即可；不要出现刺激胶原再生、丰胸等改变生理结构的词，仅可描述 “the look of …”。",
+            "首图文案可写：NIPPLE CARE SERUM · Brightening · Hydrating · Skin Conditioning · Helps Improve the Appearance of Uneven Skin Tone。"
+          ]
+        }
+      ]
+    },
+    {
+      "no": "10",
+      "title": "臀部护理",
+      "sub": "Buttock Care",
+      "blocks": [
+        {
+          "t": "words",
+          "tone": "ban",
+          "head": "❌ 禁用词（六类）",
+          "tag": "违规",
+          "items": [
+            {
+              "zh": "丰臀类",
+              "en": "Butt Enlargement / Buttock Enlargement / Butt Enhancer / Butt Growth / Booty Growth / Bigger Butt / Make Your Butt Bigger / Booty Enhancement"
+            },
+            {
+              "zh": "提臀类",
+              "en": "Butt Lift / Buttock Lift / Booty Lift / Butt Lifting Cream / Butt Lift Cream / Instant / Natural / Non-Surgical / Brazilian Butt Lift / BBL / Lift Your Butt"
+            },
+            {
+              "zh": "塑形类",
+              "en": "Buttock Contouring / Butt Contouring / Body Contouring / Butt Sculpting / Body Sculpting / Reshape Your Butt / Butt Reshaping / Body Shaping / Butt Shaping / Booty Shaping"
+            },
+            {
+              "zh": "减脂 / 瘦臀类",
+              "en": "Butt Fat Burning / Burn Butt Fat / Fat Burning Butt Cream / Reduce Butt Fat / Lose Butt Fat / Slimming Buttocks / Slim Butt Cream / Butt Slimming / Localized Fat Reduction"
+            },
+            {
+              "zh": "橘皮 / Cellulite 类",
+              "en": "Cellulite Treatment / Treat · Cure · Remove · Eliminate Cellulite / Anti-Cellulite / Cellulite Reduction / Cellulite Cream"
+            },
+            {
+              "zh": "医疗 / 皮肤疾病类",
+              "en": "Treat Acne / Cure Acne / Treat Folliculitis / Eczema / Psoriasis / Rash / Anti-Inflammatory / Antibacterial / Antifungal / Kill Bacteria / Infection"
+            },
+            {
+              "zh": "强生理作用（一律禁用）",
+              "en": "Regenerate / Rebuild / Restructure / Stimulate Tissue / Increase Volume / Change Body Shape"
+            }
+          ]
+        },
+        {
+          "t": "words",
+          "tone": "ok",
+          "head": "✅ 可用词（四类）",
+          "tag": "合规",
+          "items": [
+            {
+              "zh": "Skin Care 类",
+              "en": "Buttock Skin Care / Buttock Care / Buttocks Care / Body Care / Daily Buttock Care / Daily Body Care / Targeted Body Care / Buttock Moisturizer / Buttock Moisturizing Cream / Hydrating Buttock Cream"
+            },
+            {
+              "zh": "皮肤外观类",
+              "en": "Smoother-Looking / Softer-Looking / Smooth / Soft / More Even-Looking / Healthy-Looking / Radiant-Looking Skin / Refreshed-Looking / Silky-Smooth Skin / Skin Conditioning / Improves the Look of Skin"
+            },
+            {
+              "zh": "针对粗糙、干燥、角质",
+              "en": "For Dry / Rough Skin / Dry Skin Care / Helps Smooth Rough Skin / Exfoliating Body Care / Gentle Exfoliation / Skin Refining"
+            },
+            {
+              "zh": "需要控制语境（紧致/平滑外观）",
+              "en": "Butt / Buttock Firming / Skin / Body Firming / Butt Smoothing / Helps Firm the Skin / Improves Skin Firmness / Enhanced Buttock Appearance"
+            }
+          ]
+        },
+        {
+          "t": "images",
+          "ok": {
+            "title": "✅ 合规图",
+            "text": "站立/自然坐姿 · 短裤/运动短裤/睡裤/浴袍 · 不露臀沟 · 手持产品 · 自然姿态",
+            "imgs": [
+              {
+                "src": "图片/胸臀/bt_ok_shorts.png",
+                "cap": "穿短裤 + 手持产品"
+              },
+              {
+                "src": "图片/胸臀/bt_ok_back.png",
+                "cap": "运动裤背影（自然站立）"
+              },
+              {
+                "src": "图片/胸臀/bt_ok_bra.png",
+                "cap": "运动内衣 + 瑜伽裤背影"
+              }
+            ]
+          }
+        },
+        {
+          "t": "note",
+          "tone": "warn",
+          "head": "⚠️ 禁用视觉清单",
+          "tag": "注意",
+          "items": [
+            "裸臀、丁字裤、裸臀特写、臀沟清晰可见；撅臀、抓臀、手指指向臀沟、俯卧撅臀。",
+            "丰臀、翘臀、瘦臀视觉；臀型 Before / After 对比；镜头从臀部下方仰拍、臀部打光。",
+            "性感挑逗姿势；明显改变臀型的 P 图、“使用后臀部明显变翘”视觉；暗示减脂/瘦臀、暗示丰臀/增大臀部。",
+            "合规做法：模特站立或自然坐姿，穿短裤、运动短裤、睡裤、浴袍；臀部可自然露出轮廓但不裸露臀沟；可手持产品、涂抹臀部外侧。"
+          ]
+        }
+      ]
     }
   ],
   "final": {
