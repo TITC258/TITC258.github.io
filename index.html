@@ -243,6 +243,55 @@
             outline: none !important;
             box-shadow: none !important;
         }
+
+        /* ===== 左侧简约公告区（默认半透明“公告”，点击展开）===== */
+        .home-ann {
+            position: fixed; left: 28px; top: 50%; transform: translateY(-50%);
+            z-index: 900; width: 46px;
+            transition: width .35s cubic-bezier(.25,.46,.45,.94);
+        }
+        .home-ann.open { width: 320px; }
+        .home-ann-head {
+            display: flex; align-items: center; gap: 12px; width: 100%;
+            background: none; border: none; cursor: pointer; padding: 0; text-align: left;
+        }
+        .home-ann-label {
+            writing-mode: vertical-rl; text-orientation: upright;
+            font-size: 34px; font-weight: 800; letter-spacing: 6px; line-height: 1;
+            color: #9333EA; opacity: .32; transition: opacity .3s;
+            user-select: none;
+        }
+        .home-ann.open .home-ann-label { writing-mode: horizontal-tb; font-size: 22px; letter-spacing: 4px; opacity: .55; }
+        .home-ann-rail {
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+            font-size: 12px; color: #9333ea; opacity: .7;
+        }
+        .home-ann-rail i { transition: transform .3s; }
+        .home-ann.open .home-ann-rail i { transform: rotate(180deg); }
+        .home-ann-panel {
+            margin-top: 10px; display: none;
+            max-height: 62vh; overflow-y: auto; overflow-x: hidden;
+            scrollbar-width: thin; padding-right: 6px;
+        }
+        .home-ann.open .home-ann-panel { display: block; }
+        .home-ann-panel::-webkit-scrollbar { width: 6px; }
+        .home-ann-panel::-webkit-scrollbar-thumb { background: #d4b4f0; border-radius: 999px; }
+        .ha-item { margin-bottom: 12px; }
+        .ha-item .ha-title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .ha-item .ha-title .ha-date { font-size: 11px; font-weight: 400; opacity: .65; }
+        .ha-item .ha-body { font-size: 13px; line-height: 1.65; margin-top: 5px; color: #4b5563; }
+        .ha-item .ha-body img { max-width: 100%; border-radius: 8px; }
+        .ha-danger .ha-title { color: #dc2626; }
+        .ha-warning .ha-title { color: #d97706; }
+        .ha-info .ha-title { color: #2563eb; }
+        .ha-empty { font-size: 13px; color: #9ca3af; }
+        @media (max-width: 768px) {
+            .home-ann { left: 12px; }
+            .home-ann.open { width: 240px; }
+            .home-ann-label { font-size: 26px; }
+        }
+        body.dark .ha-item .ha-body { color: #cbd5e1; }
+        body.dark .home-ann-panel::-webkit-scrollbar-thumb { background: #6b4f8a; }
     </style>
 </head>
 
@@ -262,11 +311,26 @@
     </button>
     <!-- 跟随鼠标的小圆点 -->
     <div id="cursor-dot" class="fixed w-6 h-6 rounded-full bg-primary/20 pointer-events-none z-[100] transition-all duration-200 ease-out" style="transform: translate(-50%, -50%); left: 0; top: 0; opacity: 0;"></div>
+
+    <!-- 左侧简约公告区（默认半透明“公告”，点击展开） -->
+    <aside class="home-ann" id="homeAnn">
+        <button class="home-ann-head" id="homeAnnToggle" type="button">
+            <span class="home-ann-label">公告</span>
+            <span class="home-ann-rail">
+                <i class="fa fa-chevron-down"></i>
+                <span id="homeAnnHint">展开</span>
+            </span>
+        </button>
+        <div class="home-ann-panel">
+            <div id="homeAnnList"></div>
+        </div>
+    </aside>
+
     <main class="flex-grow flex flex-col items-center justify-center px-4 py-12">
         <!-- 海报容器，带入场动画 -->
         <div class="flex justify-center mb-8 animate-poster-fade-down">
             <a href="https://www.qijishow.com/adobeall/index.html" target="_blank" rel="noopener noreferrer" class="poster-img-wrapper">
-                <img src="daxiangzi.webp" alt="海报" 
+                <img src="daxiangzi.png" alt="海报" 
                     class="poster-img"
                     style="max-height: 600px;">
             </a>
@@ -609,6 +673,70 @@
         });
     })();
     
+    </script>
+
+    <!-- 首页公告加载与渲染 -->
+    <script>
+        (function () {
+            const ann = document.getElementById('homeAnn');
+            const toggle = document.getElementById('homeAnnToggle');
+            const list = document.getElementById('homeAnnList');
+            const hint = document.getElementById('homeAnnHint');
+            let items = [];
+
+            function esc(s) {
+                return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
+                    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+                }[c]));
+            }
+
+            function render() {
+                list.innerHTML = '';
+                if (!items.length) {
+                    const e = document.createElement('div');
+                    e.className = 'ha-empty'; e.textContent = '暂无公告';
+                    list.appendChild(e); return;
+                }
+                items.forEach(a => {
+                    const item = document.createElement('div');
+                    item.className = 'ha-item ha-' + (a.type || 'info');
+                    const icon = a.icon || (a.type === 'danger' ? 'fa-exclamation-triangle'
+                        : (a.type === 'warning' ? 'fa-exclamation-circle' : 'fa-info-circle'));
+                    const t = document.createElement('div');
+                    t.className = 'ha-title';
+                    t.innerHTML = '<i class="fa ' + icon + '"></i><span>' + esc(a.title) + '</span>' +
+                        (a.date ? '<span class="ha-date">' + esc(a.date) + '</span>' : '');
+                    const body = document.createElement('div');
+                    body.className = 'ha-body';
+                    // content 为后台富文本，限制图片等；这里内容来自自己维护的 JSON，可信
+                    body.innerHTML = a.content || '';
+                    item.append(t, body);
+                    list.appendChild(item);
+                });
+            }
+
+            async function load() {
+                try {
+                    const res = await fetch('data/announcements.json?ts=' + Date.now(), { cache: 'no-store' });
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    const data = await res.json();
+                    items = ((data && data.items) ? data.items : [])
+                        .filter(a => a.visible !== false)
+                        .sort((a, b) => (a.order || 0) - (b.order || 0));
+                } catch (e) {
+                    items = [];
+                    console.warn('公告加载失败：', e);
+                }
+                render();
+            }
+
+            toggle.addEventListener('click', () => {
+                ann.classList.toggle('open');
+                if (hint) hint.textContent = ann.classList.contains('open') ? '收起' : '展开';
+            });
+
+            load();
+        })();
     </script>
 </body>
 </html>
