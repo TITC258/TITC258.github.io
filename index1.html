@@ -1137,6 +1137,126 @@
             #announcement-widget::-webkit-scrollbar { width: 6px; }
             #announcement-widget::-webkit-scrollbar-thumb { background: #c7c9d6; border-radius: 999px; }
         }
+
+        /* ============ 板块更新时间 + 新内容标记 ============ */
+        .category-btn { position: relative; }
+        .cg-sec-meta { margin-left: auto; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .cg-sec-updated {
+            font-size: 12px; color: var(--cg-muted); font-weight: 600;
+            display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+        }
+        .cg-new {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 11px; font-weight: 800; letter-spacing: .05em;
+            color: #92600a; background: linear-gradient(135deg, #fde68a, #fbbf24);
+            border: 1px solid rgba(217,119,6,.4);
+            padding: 3px 9px; border-radius: 999px;
+            animation: cgNewPulse 1.8s ease-in-out infinite;
+        }
+        @keyframes cgNewPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(251,191,36,.5); }
+            50%      { box-shadow: 0 0 0 6px rgba(251,191,36,0); }
+        }
+        body.dark .cg-new {
+            color: #fde68a; border-color: rgba(251,191,36,.45);
+            background: linear-gradient(135deg, rgba(245,158,11,.28), rgba(245,158,11,.42));
+        }
+        /* 左侧导航：有更新的按钮显示金色发光红点 */
+        .cg-nav-dot {
+            position: absolute; top: 7px; right: 9px; width: 9px; height: 9px; border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #fde68a, #f59e0b);
+            box-shadow: 0 0 8px 2px rgba(245,158,11,.7);
+            animation: cgDotPulse 1.8s ease-in-out infinite;
+        }
+        @keyframes cgDotPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50%      { transform: scale(1.35); opacity: .75; }
+        }
+
+        /* ============ 高风险管控页 ============ */
+        .rn { width: 100%; }
+        .rn-hero { padding: 28px 30px 26px; }
+        .rn-eyebrow {
+            font-size: 13px; letter-spacing: .26em; font-weight: 700;
+            color: var(--cg-ban-strong); text-transform: uppercase; margin-bottom: 12px;
+        }
+        .rn-h1 { font-size: 28px; line-height: 1.28; font-weight: 800; color: var(--cg-text); }
+        .rn-penalty {
+            margin-top: 16px; border: 1px solid rgba(239,68,68,.4); border-radius: 16px; padding: 14px 18px;
+            background: linear-gradient(135deg, rgba(239,68,68,.12), rgba(239,68,68,.04));
+            color: var(--cg-ban-strong); font-weight: 700; display: flex; gap: 11px; align-items: center;
+        }
+        .rn-intro { margin-top: 12px; color: var(--cg-muted); font-size: 14px; }
+        .rn-card { padding: 26px 28px 28px; margin-top: 22px; }
+        .rn-card-head { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px; }
+        .rn-card-icon {
+            width: 46px; height: 46px; border-radius: 14px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center; font-size: 23px;
+            background: var(--cg-ban-bg); border: 1px solid var(--cg-ban-line);
+        }
+        .rn-card-title { font-size: 20px; font-weight: 800; color: var(--cg-text); line-height: 1.3; }
+        .rn-card-sub { font-size: 13.5px; color: var(--cg-muted); margin-top: 4px; font-weight: 500; }
+        .rn-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+        .rn-list li { display: flex; gap: 10px; align-items: flex-start; }
+        .rn-list li::before { content: '•'; color: var(--cg-ban-ic); font-weight: 800; flex-shrink: 0; }
+        .rn-kws { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+        .rn-kw {
+            font-size: 12.5px; font-weight: 700; color: var(--cg-ban-strong);
+            background: var(--cg-ban-bg); border: 1px solid var(--cg-ban-line);
+            padding: 4px 11px; border-radius: 999px;
+        }
+        .rn-scenes { display: flex; flex-direction: column; gap: 14px; }
+        .rn-scene {
+            border: 1px solid var(--cg-ban-line); background: var(--cg-ban-bg);
+            border-radius: 14px; padding: 15px 18px;
+        }
+        .rn-scene-t { font-size: 15px; font-weight: 800; color: var(--cg-ban-strong); margin-bottom: 7px; }
+        .rn-scene-d { font-size: 14px; color: var(--cg-text); }
+        .rn-deadline {
+            margin-top: 14px; border: 1px solid rgba(245,158,11,.45); border-radius: 14px; padding: 14px 18px;
+            background: linear-gradient(135deg, rgba(245,158,11,.14), rgba(245,158,11,.05));
+        }
+        .rn-deadline .rn-dl-t { font-weight: 800; color: var(--cg-warn-strong); margin-bottom: 6px; }
+        .rn-deadline ul { margin: 0; padding-left: 18px; color: var(--cg-text); font-size: 14px; }
+        .rn-action { margin-top: 12px; font-weight: 700; color: var(--cg-warn-strong); font-size: 14px; }
+        .rn-img {
+            width: 100%; border-radius: 14px; margin-top: 16px; cursor: zoom-in;
+            border: 1px solid var(--cg-card-border);
+        }
+        .rn-summary { padding: 24px 28px; margin-top: 22px; }
+        .rn-summary-title { font-size: 18px; font-weight: 800; color: var(--cg-text); margin-bottom: 12px; display: flex; gap: 8px; align-items: center; }
+        .rn-source { padding: 24px 28px; margin-top: 22px; }
+
+        /* ============ 全屏通知弹窗（仅 index1）============ */
+        .fs-modal {
+            position: fixed; inset: 0; z-index: 9500; display: none;
+            align-items: center; justify-content: center; padding: 24px;
+            background: rgba(15,18,28,.55);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        }
+        .fs-modal.open { display: flex; animation: cgLbFade .25s ease; }
+        .fs-dialog {
+            width: 100%; max-width: 620px; max-height: 88vh;
+            display: flex; flex-direction: column; background: #fff;
+            border-radius: 22px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.45);
+        }
+        body.dark .fs-dialog { background: #1b1d27; }
+        .fs-head { padding: 18px 22px; display: flex; align-items: center; gap: 12px; color: #fff; }
+        .fs-head.danger  { background: linear-gradient(135deg, #dc2626, #ef4444); }
+        .fs-head.warning { background: linear-gradient(135deg, #d97706, #f59e0b); }
+        .fs-head.info    { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+        .fs-head .fs-title { font-size: 17px; font-weight: 800; }
+        .fs-head .fs-date { margin-left: auto; font-size: 12.5px; opacity: .9; font-weight: 600; }
+        .fs-body { padding: 22px; overflow-y: auto; font-size: 14.5px; line-height: 1.75; color: #374151; }
+        body.dark .fs-body { color: #d4d8e0; }
+        .fs-body img { max-width: 100%; height: auto; border-radius: 10px; }
+        .fs-foot { padding: 14px 22px; border-top: 1px solid #eef0f4; display: flex; gap: 10px; justify-content: flex-end; }
+        body.dark .fs-foot { border-color: #2c2f3a; }
+        .fs-btn { border: none; border-radius: 999px; padding: 9px 18px; font-size: 13.5px; font-weight: 700; cursor: pointer; transition: filter .2s; }
+        .fs-btn:hover { filter: brightness(1.06); }
+        .fs-btn-ghost { background: #f1f3f7; color: #4b5563; }
+        body.dark .fs-btn-ghost { background: #2a2d38; color: #d4d8e0; }
+        .fs-btn-primary { background: linear-gradient(135deg, #4F46E5, #8B5CF6); color: #fff; }
     </style>
 </head>
 <body class="font-sans">
@@ -1313,6 +1433,22 @@
         </figure>
     </div>
 
+    <!-- 全屏通知弹窗（仅本页，背景虚化，三级，可滚动/图片）-->
+    <div id="fs-modal" class="fs-modal" aria-hidden="true">
+        <div class="fs-dialog" role="dialog" aria-modal="true" aria-labelledby="fs-title">
+            <div class="fs-head" id="fs-head">
+                <i class="fa fa-bell" id="fs-head-ic"></i>
+                <span class="fs-title" id="fs-title"></span>
+                <span class="fs-date" id="fs-date"></span>
+            </div>
+            <div class="fs-body" id="fs-body"></div>
+            <div class="fs-foot">
+                <button type="button" class="fs-btn fs-btn-ghost" id="fs-hide-today">今日不再显示</button>
+                <button type="button" class="fs-btn fs-btn-primary" id="fs-ok">确 定</button>
+            </div>
+        </div>
+    </div>
+
     <!-- 顶部导航栏 -->
     <!-- 顶部导航栏 -->
     <header class="bg-white/80 backdrop-blur-md shadow-soft sticky top-0 z-50">
@@ -1368,6 +1504,7 @@
                     <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-2">
                         <span class="cg-nav-label">合规自查</span>
                         <button class="category-btn active text-center bg-gradient-primary text-white px-3 py-2 lg:px-4 lg:py-3 rounded-lg text-sm lg:text-base w-full shadow-none border border-gray/20" data-category="违规词参考"><i class="fa fa-shield" style="margin-right:6px"></i>违规词参考</button>
+                        <button class="category-btn text-center bg-white text-neutral-dark px-3 py-2 lg:px-4 lg:py-3 rounded-lg text-sm lg:text-base w-full shadow-none border border-gray-200" data-category="高风险管控" data-nav-dot="risk"><i class="fa fa-triangle-exclamation" style="margin-right:6px"></i>高风险管控</button>
                         <span class="cg-nav-sep"></span>
                         <span class="cg-nav-label">成分分类</span>
                         <button class="category-btn text-center bg-white text-neutral-dark px-3 py-2 lg:px-4 lg:py-3 rounded-lg text-sm lg:text-base w-full shadow-none border border-gray-200" data-category="all">全部成分</button>
@@ -1561,6 +1698,7 @@
 
         // ===== 涉药违规自查指南（依据《涉药违规 · 商家自查提醒》整理）=====
         var complianceGuide = null; // 违规词指南改由 data/violation.json 加载
+        var riskNotice = null; // 高风险管控通知（data/risk-notice.json）
         // 成分数据
         var ingredientsData = []; // 成分数据改由 data/ingredients.json 加载
 
@@ -2066,6 +2204,24 @@
             return null;
         }
 
+        // 判断更新日期是否在近 14 天内（用于“新内容”标记）
+        function cgIsRecent(dateStr) {
+            if (!dateStr) return false;
+            const d = new Date(dateStr + 'T00:00:00');
+            if (isNaN(d.getTime())) return false;
+            const diff = (Date.now() - d.getTime()) / 86400000;
+            return diff >= 0 && diff <= 14;
+        }
+        function cgSecMetaHTML(sec) {
+            let m = '';
+            if (sec.updated) {
+                m += '<span class="cg-sec-updated"><i class="fa-regular fa-clock"></i>更新于 ' + cgEscape(sec.updated) + '</span>';
+            }
+            if (cgIsRecent(sec.updated)) {
+                m += '<span class="cg-new">● NEW</span>';
+            }
+            return m ? '<div class="cg-sec-meta">' + m + '</div>' : '';
+        }
         function sectionHTML(sec, term) {
             let body = '', visible = false;
             sec.blocks.forEach(function (b) {
@@ -2077,7 +2233,7 @@
             if (term && titleMatch && !visible) {
                 body = sec.blocks.map(function (b) { return blockHTML(b, null); }).join('');
             }
-            return `<div class="cg-card cg-section" id="cg-sec-${sec.no}"><div class="cg-sec-head"><span class="cg-sec-num">${sec.no}</span><div><div class="cg-sec-title">${cgEscape(sec.title)}</div><div class="cg-sec-sub">${cgEscape(sec.sub)}</div></div></div><div class="cg-sec-body">${body}</div></div>`;
+            return `<div class="cg-card cg-section" id="cg-sec-${sec.no}"><div class="cg-sec-head"><span class="cg-sec-num">${sec.no}</span><div><div class="cg-sec-title">${cgEscape(sec.title)}</div><div class="cg-sec-sub">${cgEscape(sec.sub)}</div></div>${cgSecMetaHTML(sec)}</div><div class="cg-sec-body">${body}</div></div>`;
         }
 
         function finalHTML(fin, term) {
@@ -2212,6 +2368,12 @@
                 cgLbOpen(card.getAttribute('data-full'), card.getAttribute('data-cap'));
                 return;
             }
+            // 高风险管控页图片（rn-img）
+            if (e.target && e.target.matches && e.target.matches('img.rn-img')) {
+                e.preventDefault();
+                cgLbOpen(e.target.getAttribute('src'), e.target.getAttribute('alt') || '');
+                return;
+            }
             if (e.target.closest && e.target.closest('.cg-lb-close')) { cgLbClose(); return; }
             if (e.target === cgLb) cgLbClose();
         });
@@ -2245,6 +2407,84 @@
 
             let html = '<div class="cg">' + heroHTML(g.hero) + bodyHTMLstr + fHTML + '</div>';
             ingredientsContainer.innerHTML = html;
+            if (term) cgHighlightDOM(ingredientsContainer, term);
+        }
+
+        // ========== 高风险管控页渲染 ==========
+        function rnBlockHTML(b) {
+            let h = '<div class="cg-card rn-card">';
+            h += '<div class="rn-card-head"><div class="rn-card-icon">' + (b.icon || '⚠️') + '</div>';
+            h += '<div><div class="rn-card-title">' + cgEscape(b.title) + '</div>';
+            if (b.sub) h += '<div class="rn-card-sub">' + cgEscape(b.sub) + '</div>';
+            h += '</div></div>';
+            if (b.points && b.points.length) {
+                h += '<ul class="rn-list">' + b.points.map(function (p) {
+                    return '<li><span>' + cgEscape(p) + '</span></li>';
+                }).join('') + '</ul>';
+            }
+            if (b.keywords && b.keywords.length) {
+                h += '<div class="rn-kws">' + b.keywords.map(function (k) {
+                    return '<span class="rn-kw">' + cgEscape(k) + '</span>';
+                }).join('') + '</div>';
+            }
+            if (b.scenes && b.scenes.length) {
+                h += '<div class="rn-scenes">' + b.scenes.map(function (sc) {
+                    let s = '<div class="rn-scene"><div class="rn-scene-t">' + cgEscape(sc.t) + '</div>';
+                    s += '<div class="rn-scene-d">' + cgEscape(sc.d) + '</div>';
+                    if (sc.keywords && sc.keywords.length) {
+                        s += '<div class="rn-kws">' + sc.keywords.map(function (k) {
+                            return '<span class="rn-kw">' + cgEscape(k) + '</span>';
+                        }).join('') + '</div>';
+                    }
+                    s += '</div>';
+                    return s;
+                }).join('') + '</div>';
+            }
+            if (b.action) h += '<div class="rn-action">' + cgEscape(b.action) + '</div>';
+            if (b.deadline && b.deadline.length) {
+                h += '<div class="rn-deadline"><div class="rn-dl-t"><i class="fa fa-clock"></i> 整改期限</div><ul>';
+                h += b.deadline.map(function (d) { return '<li>' + cgEscape(d) + '</li>'; }).join('');
+                h += '</ul></div>';
+            }
+            if (b.img) {
+                h += '<img class="rn-img" src="' + cgEscape(b.img) + '" alt="' + cgEscape(b.title) + '">';
+            }
+            h += '</div>';
+            return h;
+        }
+
+        function renderRiskNotice(term) {
+            ingredientsContainer.innerHTML = '';
+            ingredientsContainer.className = 'flex flex-col';
+            const qn = document.getElementById('quick-nav');
+            if (qn) qn.innerHTML = '';
+            if (!riskNotice) {
+                ingredientsContainer.innerHTML = '<div class="cg"><div class="cg-card cg-empty"><i class="fa fa-triangle-exclamation"></i><p>高风险数据加载失败，请刷新重试。</p></div></div>';
+                return;
+            }
+            const n = riskNotice;
+            let h = '<div class="cg rn">';
+            h += '<div class="cg-card rn-hero">';
+            h += '<div class="rn-eyebrow">' + cgEscape(n.hero.eyebrow) + '</div>';
+            h += '<div class="rn-h1">' + cgEscape(n.hero.title) + '</div>';
+            h += '<div class="rn-penalty"><i class="fa fa-circle-exclamation"></i><span>' + cgEscape(n.hero.penalty) + '</span></div>';
+            if (n.hero.intro) h += '<div class="rn-intro">' + cgEscape(n.hero.intro) + '</div>';
+            h += '</div>';
+            n.blocks.forEach(function (b) { h += rnBlockHTML(b); });
+            if (n.summary) {
+                h += '<div class="cg-card rn-summary"><div class="rn-summary-title"><i class="fa fa-bullhorn"></i>' + cgEscape(n.summary.title) + '</div>';
+                h += '<ul class="rn-list">' + n.summary.points.map(function (p) {
+                    return '<li><span>' + cgEscape(p) + '</span></li>';
+                }).join('') + '</ul></div>';
+            }
+            if (n.source) {
+                h += '<div class="cg-card rn-source"><div class="rn-summary-title"><i class="fa fa-image"></i>' + cgEscape(n.source.title) + '</div>';
+                h += n.source.imgs.map(function (s) {
+                    return '<img class="rn-img" src="' + cgEscape(s) + '" alt="原始通知图">';
+                }).join('') + '</div>';
+            }
+            h += '</div>';
+            ingredientsContainer.innerHTML = h;
             if (term) cgHighlightDOM(ingredientsContainer, term);
         }
 
@@ -2303,7 +2543,13 @@
                 renderComplianceGuide(currentSearchTerm || '');
                 return;
             }
-            
+
+            // 高风险管控：渲染高风险违规宣传场景通知
+            if (currentCategory === '高风险管控') {
+                renderRiskNotice(currentSearchTerm || '');
+                return;
+            }
+
             if (currentCategory === 'game') {
                 renderGames(gamesData);
                 return;
@@ -2621,6 +2867,20 @@
             }
         }
 
+        // 加载高风险管控通知（外部 JSON）
+        async function loadRiskNotice() {
+            try {
+                var res = await fetch('data/risk-notice.json?ts=' + Date.now(), { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                riskNotice = await res.json();
+                if (!riskNotice || !riskNotice.blocks)
+                    throw new Error('高风险数据格式不正确');
+            } catch (e) {
+                riskNotice = null;
+                console.warn('高风险数据加载失败：', e);
+            }
+        }
+
         // 渲染公告
         function renderAnnouncements() {
             var listEl = document.getElementById('announcement-list');
@@ -2737,17 +2997,43 @@
             updateAnnouncementVisibility();
         };
         
+        // 左侧导航红点：依据近期更新数据决定显隐
+        function cgApplyNavDots() {
+            document.querySelectorAll('.category-btn').forEach(function (btn) {
+                const existing = btn.querySelector('.cg-nav-dot');
+                if (existing) existing.remove();
+                let show = false;
+                const cat = btn.dataset.category;
+                if (cat === '高风险管控') {
+                    show = !!(riskNotice && cgIsRecent(riskNotice.updated));
+                } else if (cat === '违规词参考') {
+                    show = !!(complianceGuide && complianceGuide.sections.some(function (s) {
+                        return cgIsRecent(s.updated);
+                    }));
+                }
+                if (show) {
+                    const d = document.createElement('span');
+                    d.className = 'cg-nav-dot';
+                    btn.appendChild(d);
+                }
+            });
+        }
+
         // 初始化页面：先加载可编辑数据，再默认进入“违规词参考”
         (async function () {
             await loadAnnouncements();
             await loadIngredients();
             await loadViolation();
+            await loadRiskNotice();
             cgBuildCapsules();
             mergedIngredientsData = mergeIngredientsData(ingredientsData);
             handleCategoryFilter('违规词参考');
             renderAnnouncements();
             updateAnnouncementVisibility();
+            cgApplyNavDots();
             setTimeout(addPeptideBadges, 200);
+            // 全屏通知弹窗（在数据与渲染就绪后判定）
+            fsMaybeShow();
             // 加载完成后若 URL 带 #cg-sec-xx 锚点，则定位到对应板块（异步渲染后补齐锚点）
             if (location.hash && location.hash.indexOf('#cg-sec-') === 0) {
                 setTimeout(function () {
@@ -2756,7 +3042,58 @@
                 }, 350);
             }
         })();
-        
+
+        // ========== 全屏通知弹窗（仅本页）==========
+        const fsModal = document.getElementById('fs-modal');
+        const fsHead = document.getElementById('fs-head');
+        const fsHeadIc = document.getElementById('fs-head-ic');
+        const fsTitle = document.getElementById('fs-title');
+        const fsDate = document.getElementById('fs-date');
+        const fsBody = document.getElementById('fs-body');
+
+        function fsLocalDate() {
+            const d = new Date();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return d.getFullYear() + '-' + m + '-' + day;
+        }
+        function fsStorageKey(id) { return 'fsHide_' + id + '_' + fsLocalDate(); }
+        function fsOpen(a) {
+            const type = a.type || 'info';
+            fsHead.className = 'fs-head ' + type;
+            const ic = type === 'danger' ? 'fa-triangle-exclamation'
+                : (type === 'warning' ? 'fa-circle-exclamation' : 'fa-circle-info');
+            fsHeadIc.className = 'fa ' + ic;
+            fsTitle.textContent = a.title || '';
+            fsDate.textContent = a.date || '';
+            fsBody.innerHTML = a.content || '';
+            fsBody.scrollTop = 0;
+            fsModal.classList.add('open');
+            fsModal.setAttribute('aria-hidden', 'false');
+        }
+        function fsClose() {
+            fsModal.classList.remove('open');
+            fsModal.setAttribute('aria-hidden', 'true');
+        }
+        // 每次进入页面：取 fullscreen===true 的第一条（一次只开一个）
+        function fsMaybeShow() {
+            if (!announcements || !announcements.length) return;
+            const target = announcements.find(function (a) {
+                return a.fullscreen === true && a.visible !== false;
+            });
+            if (!target) return;
+            try { if (localStorage.getItem(fsStorageKey(target.id)) === '1') return; } catch (e) {}
+            fsOpen(target);
+        }
+        document.getElementById('fs-ok').addEventListener('click', fsClose);
+        document.getElementById('fs-hide-today').addEventListener('click', function () {
+            const target = announcements.find(function (a) { return a.fullscreen === true; });
+            if (target) { try { localStorage.setItem(fsStorageKey(target.id), '1'); } catch (e) {} }
+            fsClose();
+        });
+        // 点击背景空白处关闭（不持久化，下次进入仍显示）
+        fsModal.addEventListener('click', function (e) { if (e.target === fsModal) fsClose(); });
+
         // 顶部「使用前请注意」提示条事件
         (function () {
             const tip = document.getElementById('headerTip');
