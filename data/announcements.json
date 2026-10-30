@@ -5,7 +5,7 @@
       "type": "danger",
       "title": "🚨 高风险违规宣传场景管控（含黑块整改期限）",
       "date": "2026-10-30",
-      "visible": true,
+      "visible": false,
       "fullscreen": true,
       "order": 0,
       "content": "<p class=\"font-bold mb-2\">处罚力度：以下违规属于严重违规，触发 1 次限制上新 30 天；触发 3 次则店铺永久下架 + 限制上新，且不可解。</p><p class=\"mb-2\"><strong>🌑 局部过暗（黑块）整改：</strong>整改动作为删除相关图片；<strong>11 月 10 日前整改完毕，11 月 11 日起计次处罚。</strong></p><p class=\"mb-2\"><strong>五类高风险场景：</strong></p><ul class=\"list-disc pl-5 mb-2\"><li>丰臀丰胸：尺寸 / 体积增大、促进激活、生理发育、前后对比、箭头指向增大部位。</li><li>关节霜疼痛：小蜜蜂 / 蜂巢元素、关节红肿发热、腰腿疼痛、蜂毒 / 蜈蚣 / 虎头 / 马头成分暗示治疗。</li><li>局部祛黑 / 美白：关节、腋下、私处局部发黑对比。</li><li>美白宣称：绝对化 / 夸大性美白、身体局部祛黑、夸张前后对比。</li><li>减肥减脂：身体带火 / 辣椒、箭头瘦身、尺子量腰围。</li></ul><p class=\"mb-2\">完整词表与示例见左侧导航「<strong>高风险管控</strong>」页面。</p><img src=\"图片/管控/dark_block_notice.png\" alt=\"黑块管控声明\" class=\"w-full h-auto mt-2 rounded-lg\">"
